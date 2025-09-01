@@ -5,7 +5,11 @@
         <!-- Logo Section -->
         <div class="flex items-center">
           <div class="logo">
-            <h1 class="text-2xl font-bold text-[#017534]">PBNU Dashboard</h1>
+            <img 
+              src="/headerlogo.svg" 
+              alt="PBNU Dashboard" 
+              class="h-10 w-auto"
+            />
           </div>
         </div>
         

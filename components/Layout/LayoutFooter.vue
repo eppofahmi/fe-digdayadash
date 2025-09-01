@@ -3,7 +3,11 @@
     <div class="max-w-6xl mx-auto px-5">
       <div class="flex items-center justify-between">
         <div class="flex items-center">
-          <span class="text-white font-medium">PBNU © 2025</span>
+          <img 
+            src="/footerlogo.svg" 
+            alt="PBNU Logo" 
+            class="h-8 w-auto"
+          />
         </div>
         <div class="flex gap-6">
           <a href="/katalog-data" class="text-gray-400 text-sm hover:text-white transition-colors">
