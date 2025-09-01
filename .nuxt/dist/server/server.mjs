@@ -1,0 +1,1 @@
+export { default } from "file:///Volumes/repoku/PBNU/persuratan/dashboardPersuratan/fe-digdayadash/node_modules/@nuxt/vite-builder/dist/runtime/vite-node.mjs"
