@@ -15,19 +15,25 @@
     </div>
     
     <!-- Statistics Grid -->
-    <div class="grid grid-cols-3 gap-4">
+    <div class="grid grid-cols-3 gap-3">
       <BaseCard
         v-for="stat in statistics"
         :key="stat.label"
         :hoverable="true"
+        :padding="false"
         class="text-center"
       >
-        <div class="w-10 h-10 bg-[#daf8e3] rounded-lg flex items-center justify-center mx-auto mb-2">
-          <component :is="stat.icon" class="w-4 h-4 text-[var(--secondary-teal)]" />
+        <div class="p-3">
+          <div class="w-6 h-6 bg-[#daf8e3] rounded-lg flex items-center justify-center mx-auto mb-1">
+            <component :is="stat.icon" class="w-3 h-3 text-[var(--secondary-teal)]" />
+          </div>
+          <div class="text-xs text-gray-600 mb-1 font-medium leading-tight">{{ stat.label }}</div>
+          <div class="w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mb-2"></div>
+          <div class="mb-1">
+            <span class="text-xl font-bold text-gray-900">{{ stat.value }}</span>
+            <span v-if="stat.percentage" class="text-sm font-medium text-[#017534] ml-2">{{ stat.percentage }}</span>
+          </div>
         </div>
-        <div class="text-sm text-gray-600 mb-2 font-medium">{{ stat.label }}</div>
-        <div class="text-3xl font-bold text-gray-900 mb-1">{{ stat.value }}</div>
-        <div class="text-sm text-gray-600">{{ stat.description }}</div>
       </BaseCard>
     </div>
 
@@ -66,6 +72,7 @@ interface StatisticCard {
   label: string
   value: string
   description: string
+  percentage?: string
 }
 
 const statistics: StatisticCard[] = [
@@ -79,7 +86,8 @@ const statistics: StatisticCard[] = [
     icon: Users,
     label: 'Pengurus Terhubung',
     value: '152/184',
-    description: '50%'
+    percentage: '50%',
+    description: 'pengurus terhubung'
   },
   {
     icon: Send,
