@@ -1027,7 +1027,7 @@ const _A4y9JBuXFzZjD21RXRdbFfScuVnjBXUyh7Dw2IyaW5U = (function(nitro) {
 
 const rootDir = "/Volumes/repoku/PBNU/persuratan/dashboardPersuratan/fe-digdayadash";
 
-const appHead = {"meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"name":"description","content":"Monitoring dan evaluasi implementasi sistem persuratan digital di seluruh kepengurusan NU"}],"link":[{"rel":"icon","type":"image/png","href":"/logo.png"}],"style":[],"script":[],"noscript":[],"title":"Dashboard Implementasi Persuratan NU"};
+const appHead = {"meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"name":"description","content":"Monitoring dan evaluasi implementasi sistem persuratan digital di seluruh kepengurusan NU"}],"link":[{"rel":"icon","type":"image/x-icon","href":"/favicon.ico"}],"style":[],"script":[],"noscript":[],"title":"Dashboard Implementasi Persuratan NU"};
 
 const appRootTag = "div";
 

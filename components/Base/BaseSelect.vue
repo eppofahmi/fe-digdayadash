@@ -42,6 +42,8 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
+  id: '',
+  placeholder: 'Select an option',
   disabled: false
 })
 

@@ -39,6 +39,8 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
+  title: '',
+  subtitle: '',
   hoverable: false,
   padding: true,
   bordered: true

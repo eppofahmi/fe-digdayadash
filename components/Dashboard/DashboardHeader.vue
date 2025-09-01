@@ -1,6 +1,6 @@
 <template>
-  <div class="bg-gradient-to-br from-emerald-500 to-emerald-600 text-white p-8 rounded-xl mb-8">
-    <div class="flex justify-between items-start mb-4">
+  <div class="text-white p-8 rounded-xl mb-8" style="background: linear-gradient(to bottom right, #00491E, #1E9A3F)">
+    <div class="mb-4">
       <div class="flex flex-col gap-2">
         <!-- Breadcrumb -->
         <nav class="breadcrumb">
@@ -13,7 +13,6 @@
           <span>/</span>
           <span class="active">Dashboard Progress Implementasi Persuratan PBNU</span>
         </nav>
-        
       </div>
     </div>
     

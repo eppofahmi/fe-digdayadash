@@ -54,7 +54,7 @@ import {
 import type { Component } from 'vue'
 
 interface Props {
-  currentFilters?: Record<string, any>
+  currentFilters?: Record<string, unknown>
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -122,7 +122,7 @@ const handleCopyLink = async () => {
   }
 }
 
-const handleShare = async (type: string, options?: any) => {
+const handleShare = async (type: string, options?: Record<string, unknown>) => {
   try {
     switch (type) {
       case 'email':

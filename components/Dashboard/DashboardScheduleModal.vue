@@ -52,7 +52,7 @@
           v-model="scheduleForm.time"
           type="time"
           class="px-2 py-1.5 text-sm border border-gray-200 rounded-lg focus:ring-2 focus:ring-[var(--primary-green)] focus:border-transparent"
-        />
+        >
       </div>
 
       <div v-if="scheduleForm.frequency === 'monthly'" class="grid grid-cols-2 gap-2">
@@ -67,7 +67,7 @@
           v-model="scheduleForm.time"
           type="time"
           class="px-2 py-1.5 text-sm border border-gray-200 rounded-lg focus:ring-2 focus:ring-[var(--primary-green)] focus:border-transparent"
-        />
+        >
       </div>
 
       <div v-if="scheduleForm.frequency === 'daily'">
@@ -75,7 +75,7 @@
           v-model="scheduleForm.time"
           type="time"
           class="w-full px-2 py-1.5 text-sm border border-gray-200 rounded-lg focus:ring-2 focus:ring-[var(--primary-green)] focus:border-transparent"
-        />
+        >
       </div>
 
       <!-- Recipients -->
@@ -92,17 +92,17 @@
               type="email"
               placeholder="email@example.com"
               class="flex-1 px-2 py-1.5 text-sm border border-gray-200 rounded-lg focus:ring-2 focus:ring-[var(--primary-green)] focus:border-transparent"
-            />
+            >
             <button
-              @click="removeRecipient(index)"
               class="p-1.5 text-red-500 hover:text-red-700 transition-colors"
+              @click="removeRecipient(index)"
             >
               <X class="w-3.5 h-3.5" />
             </button>
           </div>
           <button
-            @click="addRecipient"
             class="w-full p-1.5 text-sm text-gray-600 border border-dashed border-gray-300 rounded-lg hover:border-gray-400 transition-colors"
+            @click="addRecipient"
           >
             + Add Email
           </button>
@@ -119,7 +119,7 @@
               type="checkbox"
               value="pdf"
               class="text-[var(--primary-green)] focus:ring-[var(--primary-green)]"
-            />
+            >
             <FileText class="w-3.5 h-3.5 text-red-600" />
             <span class="text-xs">PDF</span>
           </label>
@@ -129,7 +129,7 @@
               type="checkbox"
               value="excel"
               class="text-[var(--primary-green)] focus:ring-[var(--primary-green)]"
-            />
+            >
             <FileSpreadsheet class="w-3.5 h-3.5 text-green-600" />
             <span class="text-xs">Excel</span>
           </label>
@@ -148,7 +148,7 @@
               v-model="scheduleForm.includeCurrentFilters"
               type="checkbox"
               class="text-[var(--primary-green)] focus:ring-[var(--primary-green)]"
-            />
+            >
             <span class="text-xs text-gray-700">Include current filters</span>
           </label>
           
@@ -157,7 +157,7 @@
             placeholder="Custom message (optional)..."
             rows="2"
             class="w-full px-2 py-1.5 text-xs border border-gray-200 rounded-lg focus:ring-2 focus:ring-[var(--primary-green)] focus:border-transparent resize-none"
-          ></textarea>
+          />
         </div>
       </details>
 
@@ -181,9 +181,9 @@
         <BaseButton 
           variant="primary" 
           size="sm"
-          @click="createSchedule"
           :loading="creating"
           :disabled="!isFormValid"
+          @click="createSchedule"
         >
           <Calendar class="w-3.5 h-3.5 mr-2" />
           Create
@@ -203,16 +203,28 @@ import {
   Info
 } from 'lucide-vue-next'
 
+interface ScheduleData {
+  reportType: string
+  frequency: string
+  dayOfWeek: number
+  dayOfMonth: number | 'last'
+  time: string
+  recipients: string[]
+  formats: string[]
+  includeCurrentFilters: boolean
+  customMessage: string
+}
+
 interface Props {
   modelValue: boolean
-  currentFilters?: Record<string, any>
+  currentFilters?: Record<string, unknown>
 }
 
 const props = defineProps<Props>()
 
 const emit = defineEmits<{
   'update:modelValue': [value: boolean]
-  'scheduled': [schedule: any]
+  'scheduled': [schedule: ScheduleData]
 }>()
 
 // State
@@ -222,7 +234,7 @@ const scheduleForm = ref({
   reportType: 'overview',
   frequency: 'weekly',
   dayOfWeek: 1, // Monday
-  dayOfMonth: 1,
+  dayOfMonth: 1 as number | 'last',
   time: '09:00',
   recipients: [''],
   formats: ['pdf'],
@@ -271,7 +283,7 @@ const nextReportDate = computed(() => {
   const { frequency, dayOfWeek, dayOfMonth, time } = scheduleForm.value
   const [hours, minutes] = time.split(':').map(Number)
   
-  let nextDate = new Date(now)
+  const nextDate = new Date(now)
   
   if (frequency === 'daily') {
     nextDate.setDate(nextDate.getDate() + 1)

@@ -8,10 +8,10 @@ interface ShareOptions {
 export const useSharing = () => {
   const { success, error } = useToast()
   const route = useRoute()
-  const router = useRouter()
+  const _router = useRouter()
 
   // Copy current link with all applied filters
-  const copyCurrentLink = async (currentFilters?: Record<string, any>) => {
+  const copyCurrentLink = async (currentFilters?: Record<string, unknown>) => {
     try {
       const baseUrl = window.location.origin + window.location.pathname
       
@@ -48,7 +48,7 @@ export const useSharing = () => {
 
   // Generate shareable link with expiration
   const generateShareableLink = async (
-    filters?: Record<string, any>, 
+    filters?: Record<string, unknown>, 
     expiration = '7d'
   ): Promise<string> => {
     try {
@@ -80,7 +80,7 @@ export const useSharing = () => {
   // Export data functionality
   const exportData = async (
     type: 'activation' | 'statistics' | 'trends',
-    options: ShareOptions = {}
+    _options: ShareOptions = {}
   ) => {
     try {
       // In real implementation, call export API
@@ -97,7 +97,7 @@ export const useSharing = () => {
       // For demo, simulate download
       await new Promise(resolve => setTimeout(resolve, 2000))
       
-      const filename = `dashboard-${type}-${new Date().toISOString().split('T')[0]}.${options.format || 'pdf'}`
+      const filename = `dashboard-${type}-${new Date().toISOString().split('T')[0]}.${_options.format || 'pdf'}`
       success(`${filename} exported successfully!`)
       
       // Simulate download trigger
@@ -112,7 +112,7 @@ export const useSharing = () => {
   // Email sharing
   const shareViaEmail = async (
     subject = 'Dashboard Persuratan PBNU',
-    options: ShareOptions = {}
+    _options: ShareOptions = {}
   ) => {
     try {
       const shareableLink = await copyCurrentLink()
@@ -150,7 +150,7 @@ export const useSharing = () => {
     try {
       const shareableLink = await copyCurrentLink()
       const title = 'Dashboard Persuratan PBNU'
-      const description = 'Monitoring implementasi persuratan digital di lingkungan PBNU'
+      const _description = 'Monitoring implementasi persuratan digital di lingkungan PBNU'
       
       let shareUrl = ''
       

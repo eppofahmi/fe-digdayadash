@@ -24,6 +24,8 @@
 </template>
 
 <script setup lang="ts">
+// Use default layout
+
 // Page metadata
 useHead({
   title: 'Dashboard Implementasi Persuratan NU',
@@ -34,11 +36,4 @@ useHead({
     }
   ]
 })
-
-// Page can be enhanced with:
-// - Loading states
-// - Error handling  
-// - Data fetching from API/store
-// - Real-time updates
-// - Export functionality
 </script>

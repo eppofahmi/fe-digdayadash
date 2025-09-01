@@ -17,6 +17,7 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   theme: '',
   height: '400px',
+  width: '100%',
   loading: false
 })
 

@@ -5,11 +5,7 @@
         <!-- Logo Section -->
         <div class="flex items-center">
           <div class="logo">
-            <img 
-              src="/logo.png" 
-              alt="Digdaya Logo" 
-              class="w-32 h-12 object-contain"
-            >
+            <h1 class="text-2xl font-bold text-[#017534]">PBNU Dashboard</h1>
           </div>
         </div>
         

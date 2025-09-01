@@ -15,8 +15,8 @@
         <div class="grid grid-cols-2 gap-2">
           <!-- Email Share -->
           <button
-            @click="shareViaEmail"
             class="flex items-center gap-2 p-2.5 rounded-lg border border-gray-200 hover:border-[var(--primary-green)] hover:bg-green-50 transition-all group"
+            @click="shareViaEmail"
           >
             <div class="w-7 h-7 bg-blue-100 group-hover:bg-blue-200 rounded-lg flex items-center justify-center">
               <Mail class="w-3.5 h-3.5 text-blue-600" />
@@ -29,8 +29,8 @@
 
           <!-- WhatsApp Share -->
           <button
-            @click="shareViaWhatsApp"
             class="flex items-center gap-2 p-2.5 rounded-lg border border-gray-200 hover:border-[var(--primary-green)] hover:bg-green-50 transition-all group"
+            @click="shareViaWhatsApp"
           >
             <div class="w-7 h-7 bg-green-100 group-hover:bg-green-200 rounded-lg flex items-center justify-center">
               <MessageCircle class="w-3.5 h-3.5 text-green-600" />
@@ -49,8 +49,8 @@
         
         <div class="grid grid-cols-2 gap-2">
           <button
-            @click="exportAsPDF"
             class="flex items-center gap-2 p-2.5 rounded-lg border border-gray-200 hover:border-[var(--primary-green)] hover:bg-green-50 transition-all group"
+            @click="exportAsPDF"
           >
             <div class="w-7 h-7 bg-red-100 group-hover:bg-red-200 rounded-lg flex items-center justify-center">
               <FileText class="w-3.5 h-3.5 text-red-600" />
@@ -62,8 +62,8 @@
           </button>
 
           <button
-            @click="exportAsExcel"
             class="flex items-center gap-2 p-2.5 rounded-lg border border-gray-200 hover:border-[var(--primary-green)] hover:bg-green-50 transition-all group"
+            @click="exportAsExcel"
           >
             <div class="w-7 h-7 bg-green-100 group-hover:bg-green-200 rounded-lg flex items-center justify-center">
               <FileSpreadsheet class="w-3.5 h-3.5 text-green-600" />
@@ -94,11 +94,11 @@
 
           <!-- Generate Button -->
           <BaseButton
-            @click="generateShareableLink"
             :loading="generatingLink"
             variant="primary"
             size="sm"
             class="w-full"
+            @click="generateShareableLink"
           >
             <Link2 class="w-3.5 h-3.5 mr-2" />
             Generate Link
@@ -114,9 +114,9 @@
                 <p class="text-xs text-gray-700 truncate">{{ shareableLink }}</p>
               </div>
               <button
-                @click="copyShareableLink"
                 class="p-1 text-gray-500 hover:text-[var(--primary-green)] transition-colors"
                 title="Copy Link"
+                @click="copyShareableLink"
               >
                 <Copy class="w-3.5 h-3.5" />
               </button>
@@ -134,8 +134,8 @@
         <h4 class="text-xs font-medium text-gray-600 uppercase tracking-wide">Automation</h4>
         
         <button
-          @click="scheduleReport"
           class="w-full flex items-center gap-2 p-2.5 rounded-lg border border-gray-200 hover:border-[var(--primary-green)] hover:bg-green-50 transition-all group"
+          @click="scheduleReport"
         >
           <div class="w-7 h-7 bg-purple-100 group-hover:bg-purple-200 rounded-lg flex items-center justify-center">
             <Calendar class="w-3.5 h-3.5 text-purple-600" />
@@ -177,16 +177,28 @@ import {
   Calendar
 } from 'lucide-vue-next'
 
+interface ScheduleData {
+  reportType: string
+  frequency: string
+  dayOfWeek: number
+  dayOfMonth: number | 'last'
+  time: string
+  recipients: string[]
+  formats: string[]
+  includeCurrentFilters: boolean
+  customMessage: string
+}
+
 interface Props {
   modelValue: boolean
-  currentFilters?: Record<string, any>
+  currentFilters?: Record<string, unknown>
 }
 
 const props = defineProps<Props>()
 
 const emit = defineEmits<{
   'update:modelValue': [value: boolean]
-  'share': [type: string, options?: any]
+  'share': [type: string, options?: Record<string, unknown>]
 }>()
 
 // Reactive data
@@ -304,7 +316,7 @@ const scheduleReport = () => {
   showScheduleModal.value = true
 }
 
-const handleScheduleCreated = (scheduleData: any) => {
+const handleScheduleCreated = (scheduleData: ScheduleData) => {
   console.log('Schedule created:', scheduleData)
   // Close the main share modal as well
   closeModal()

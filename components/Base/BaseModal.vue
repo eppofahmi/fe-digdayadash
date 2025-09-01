@@ -22,8 +22,8 @@
             <slot name="title">Modal</slot>
           </h3>
           <button
-            @click="closeModal"
             class="text-gray-400 hover:text-gray-600 transition-colors"
+            @click="closeModal"
           >
             <X class="w-4 h-4" />
           </button>

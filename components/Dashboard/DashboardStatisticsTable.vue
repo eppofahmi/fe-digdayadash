@@ -22,7 +22,7 @@
     />
     
     <!-- Table -->
-    <div class="m-6 bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+    <div class="mx-3 mb-3 bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
       <div class="overflow-x-auto">
         <table class="w-full">
           <thead>

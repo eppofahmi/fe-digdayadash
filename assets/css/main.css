@@ -4,8 +4,8 @@
 
 /* Custom CSS Variables */
 :root {
-  --primary-green: #257941;
-  --primary-green-hover: #1e6436;
+  --primary-green: #017534;
+  --primary-green-hover: #015a2a;
   --secondary-teal: #0c5461;
   --footer-gray: #343d46;
 }
@@ -51,7 +51,7 @@ body {
   }
   
   .section-header {
-    @apply px-6 py-4 border-b border-gray-200 bg-[var(--secondary-teal)] text-white flex items-center gap-4;
+    @apply px-6 py-4 border-b border-gray-200 bg-[#017534] text-white flex items-center gap-4;
   }
   
   .section-header-logo {

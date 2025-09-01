@@ -16,7 +16,7 @@
     </template>
     
     <!-- Time Filter -->
-    <div class="px-6 pb-4 pt-2 bg-white border-b border-gray-200 flex flex-wrap items-center justify-between gap-4">
+    <div class="px-4 pb-4 pt-2 bg-white flex flex-wrap items-center justify-between gap-4">
       <!-- Time Options -->
       <div class="flex items-center gap-1 bg-white p-1 rounded-lg border border-gray-200">
         <button
@@ -49,7 +49,7 @@
     </div>
     
     <!-- Chart Container -->
-    <div class="p-8 h-96">
+    <div class="p-4 h-96">
       <BaseEChart 
         :option="chartOption" 
         height="100%" 
@@ -59,20 +59,20 @@
     </div>
     
     <!-- Statistics Summary -->
-    <div class="px-6 py-5 bg-white border-t border-gray-200 grid grid-cols-4 gap-4">
-      <div class="text-center">
+    <div class="px-4 py-3 bg-white grid grid-cols-4 gap-4">
+      <div class="text-center p-4 bg-gray-50 rounded-lg border border-gray-200">
         <div class="text-xs text-gray-600 uppercase font-semibold tracking-wide mb-1">Total</div>
         <div class="text-2xl font-bold text-gray-900">{{ chartStats.total }}</div>
       </div>
-      <div class="text-center">
+      <div class="text-center p-4 bg-gray-50 rounded-lg border border-gray-200">
         <div class="text-xs text-gray-600 uppercase font-semibold tracking-wide mb-1">Rata Rata</div>
         <div class="text-2xl font-bold text-gray-900">{{ chartStats.average }}</div>
       </div>
-      <div class="text-center">
+      <div class="text-center p-4 bg-gray-50 rounded-lg border border-gray-200">
         <div class="text-xs text-gray-600 uppercase font-semibold tracking-wide mb-1">Tertinggi</div>
         <div class="text-2xl font-bold text-gray-900">{{ chartStats.highest }}</div>
       </div>
-      <div class="text-center">
+      <div class="text-center p-4 bg-gray-50 rounded-lg border border-gray-200">
         <div class="text-xs text-gray-600 uppercase font-semibold tracking-wide mb-1">Terendah</div>
         <div class="text-2xl font-bold text-gray-900">{{ chartStats.lowest }}</div>
       </div>
