@@ -534,6 +534,392 @@ interface WSMessage {
 
 ---
 
+## 8. Schedule Reports Management
+
+### POST `/dashboard/schedules`
+Create a new scheduled report.
+
+#### Request
+```http
+POST /dashboard/schedules
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{
+  "name": "Weekly PBNU Overview",
+  "reportType": "overview",
+  "frequency": "weekly",
+  "schedule": {
+    "dayOfWeek": 1,
+    "time": "09:00"
+  },
+  "recipients": ["admin@pbnu.org", "manager@pbnu.org"],
+  "formats": ["pdf", "excel"],
+  "filters": {
+    "wilayah": "Pusat",
+    "tingkat": "Pengurus"
+  },
+  "customMessage": "Weekly dashboard report for PBNU management."
+}
+```
+
+#### Request Body Schema
+```typescript
+interface CreateScheduleRequest {
+  name: string
+  reportType: 'overview' | 'activation' | 'statistics' | 'trends' | 'complete'
+  frequency: 'daily' | 'weekly' | 'monthly'
+  schedule: {
+    dayOfWeek?: number // 0-6, required for weekly
+    dayOfMonth?: number | 'last' // 1-31 or 'last', required for monthly
+    time: string // HH:MM format
+  }
+  recipients: string[] // Email addresses
+  formats: ('pdf' | 'excel')[]
+  filters?: Record<string, any> // Dashboard filters to apply
+  customMessage?: string
+  isActive?: boolean
+}
+```
+
+#### Response
+```typescript
+interface ScheduleResponse {
+  success: boolean
+  message: string
+  data: {
+    id: string
+    name: string
+    reportType: string
+    frequency: string
+    schedule: Record<string, any>
+    recipients: string[]
+    formats: string[]
+    filters?: Record<string, any>
+    customMessage?: string
+    isActive: boolean
+    nextExecution: string // ISO datetime
+    createdAt: string
+    updatedAt: string
+  }
+}
+```
+
+### GET `/dashboard/schedules`
+Get list of scheduled reports for the current user.
+
+#### Request
+```http
+GET /dashboard/schedules?page=1&limit=10&status=active
+Authorization: Bearer <token>
+```
+
+#### Query Parameters
+| Parameter | Type | Description | Required | Default |
+|-----------|------|-------------|----------|---------|
+| page | number | Page number | No | 1 |
+| limit | number | Records per page | No | 10 |
+| status | string | Filter by status (active/inactive/all) | No | all |
+| reportType | string | Filter by report type | No | - |
+
+#### Response
+```typescript
+interface SchedulesListResponse {
+  success: boolean
+  message: string
+  data: ScheduleResponse['data'][]
+  meta: PaginationMeta
+}
+```
+
+### GET `/dashboard/schedules/:id`
+Get details of a specific scheduled report.
+
+#### Request
+```http
+GET /dashboard/schedules/123e4567-e89b-12d3-a456-426614174000
+Authorization: Bearer <token>
+```
+
+#### Response
+```typescript
+interface ScheduleDetailResponse {
+  success: boolean
+  message: string
+  data: ScheduleResponse['data'] & {
+    executions: Array<{
+      id: string
+      executionTime: string
+      status: 'success' | 'failed' | 'partial'
+      recipientsSent: number
+      recipientsFailed: number
+      executionDuration?: number
+      errorMessage?: string
+    }>
+    nextExecutions: string[] // Next 5 scheduled execution times
+  }
+}
+```
+
+### PUT `/dashboard/schedules/:id`
+Update an existing scheduled report.
+
+#### Request
+```http
+PUT /dashboard/schedules/123e4567-e89b-12d3-a456-426614174000
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{
+  "name": "Updated Weekly Report",
+  "recipients": ["admin@pbnu.org", "new-manager@pbnu.org"],
+  "isActive": true
+}
+```
+
+#### Response
+Same as POST `/dashboard/schedules` response.
+
+### DELETE `/dashboard/schedules/:id`
+Delete a scheduled report.
+
+#### Request
+```http
+DELETE /dashboard/schedules/123e4567-e89b-12d3-a456-426614174000
+Authorization: Bearer <token>
+```
+
+#### Response
+```typescript
+interface DeleteScheduleResponse {
+  success: boolean
+  message: string
+}
+```
+
+### POST `/dashboard/schedules/:id/execute`
+Manually trigger a scheduled report execution.
+
+#### Request
+```http
+POST /dashboard/schedules/123e4567-e89b-12d3-a456-426614174000/execute
+Authorization: Bearer <token>
+```
+
+#### Response
+```typescript
+interface ExecuteScheduleResponse {
+  success: boolean
+  message: string
+  data: {
+    executionId: string
+    status: 'queued' | 'processing' | 'completed' | 'failed'
+    estimatedCompletion?: string
+  }
+}
+```
+
+### GET `/dashboard/schedules/:id/executions`
+Get execution history for a scheduled report.
+
+#### Request
+```http
+GET /dashboard/schedules/123e4567-e89b-12d3-a456-426614174000/executions?page=1&limit=20
+Authorization: Bearer <token>
+```
+
+#### Response
+```typescript
+interface ExecutionHistoryResponse {
+  success: boolean
+  message: string
+  data: Array<{
+    id: string
+    executionTime: string
+    status: 'success' | 'failed' | 'partial'
+    recipientsSent: number
+    recipientsFailed: number
+    filePaths?: Array<{
+      type: 'pdf' | 'excel'
+      path: string
+      size: number
+    }>
+    executionDuration?: number
+    errorMessage?: string
+  }>
+  meta: PaginationMeta
+}
+```
+
+---
+
+## 9. Enhanced Export and Sharing
+
+### POST `/dashboard/share/generate-link`
+Generate a secure shareable link with expiration.
+
+#### Request
+```http
+POST /dashboard/share/generate-link
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{
+  "expiration": "7d",
+  "filters": {
+    "wilayah": "Pusat",
+    "tingkat": "Pengurus"
+  },
+  "includeCharts": true
+}
+```
+
+#### Request Body Schema
+```typescript
+interface GenerateLinkRequest {
+  expiration: '24h' | '7d' | '30d' | 'never'
+  filters?: Record<string, any>
+  includeCharts?: boolean
+  customMessage?: string
+}
+```
+
+#### Response
+```typescript
+interface GenerateLinkResponse {
+  success: boolean
+  message: string
+  data: {
+    shareableUrl: string
+    shareToken: string
+    expiresAt: string | null
+    createdAt: string
+  }
+}
+```
+
+### GET `/dashboard/share/:token`
+Access dashboard via shareable link.
+
+#### Request
+```http
+GET /dashboard/share/abc123def456
+```
+
+#### Response
+Redirects to dashboard with appropriate filters applied, or returns error if expired/invalid.
+
+### POST `/dashboard/export/advanced`
+Advanced export with custom options.
+
+#### Request
+```http
+POST /dashboard/export/advanced
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{
+  "reportType": "complete",
+  "format": "pdf",
+  "options": {
+    "includeCharts": true,
+    "includeSummary": true,
+    "customTitle": "PBNU Monthly Report",
+    "dateRange": {
+      "from": "2025-08-01",
+      "to": "2025-08-31"
+    }
+  },
+  "filters": {
+    "wilayah": "Pusat"
+  },
+  "branding": {
+    "logo": true,
+    "organizationName": "PBNU Pusat",
+    "reportDate": "2025-09-01"
+  }
+}
+```
+
+#### Request Body Schema
+```typescript
+interface AdvancedExportRequest {
+  reportType: 'overview' | 'activation' | 'statistics' | 'trends' | 'complete'
+  format: 'pdf' | 'excel' | 'csv'
+  options: {
+    includeCharts?: boolean
+    includeSummary?: boolean
+    customTitle?: string
+    dateRange?: {
+      from: string
+      to: string
+    }
+  }
+  filters?: Record<string, any>
+  branding?: {
+    logo?: boolean
+    organizationName?: string
+    reportDate?: string
+  }
+}
+```
+
+#### Response
+```typescript
+interface AdvancedExportResponse {
+  success: boolean
+  message: string
+  data: {
+    downloadUrl: string
+    filename: string
+    expiresAt: string
+    fileSize: number
+    format: string
+    pages?: number // for PDF
+    records?: number // for Excel/CSV
+  }
+}
+```
+
+---
+
+## 10. WebSocket Real-Time Updates
+
+### Connection
+```typescript
+const ws = new WebSocket('wss://api.persuratan-pbnu.com/ws/dashboard');
+ws.send(JSON.stringify({
+  type: 'subscribe',
+  channels: ['statistics', 'schedules', 'executions'],
+  token: 'Bearer <token>'
+}));
+```
+
+### Message Types
+```typescript
+interface WSMessage {
+  type: 'update' | 'error' | 'ping' | 'schedule_executed' | 'schedule_created'
+  channel: string
+  data: any
+  timestamp: string
+}
+
+// Schedule execution notification
+interface ScheduleExecutionMessage extends WSMessage {
+  type: 'schedule_executed'
+  channel: 'schedules'
+  data: {
+    scheduleId: string
+    executionId: string
+    status: 'success' | 'failed' | 'partial'
+    recipientsSent: number
+    recipientsFailed: number
+  }
+}
+```
+
+---
+
 ## Implementation Notes
 
 ### Database Queries

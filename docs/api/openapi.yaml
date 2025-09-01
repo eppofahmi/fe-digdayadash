@@ -247,6 +247,303 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 
+  /dashboard/schedules:
+    get:
+      tags:
+        - Schedules
+      summary: List scheduled reports
+      description: Get list of scheduled reports for the current user
+      parameters:
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/Limit'
+        - name: status
+          in: query
+          description: Filter by status
+          required: false
+          schema:
+            type: string
+            enum: [active, inactive, all]
+            default: all
+        - name: reportType
+          in: query
+          description: Filter by report type
+          required: false
+          schema:
+            type: string
+            enum: [overview, activation, statistics, trends, complete]
+      responses:
+        '200':
+          description: Scheduled reports retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchedulesListResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    
+    post:
+      tags:
+        - Schedules
+      summary: Create scheduled report
+      description: Create a new scheduled report
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateScheduleRequest'
+      responses:
+        '201':
+          description: Schedule created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduleResponse'
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  '/dashboard/schedules/{id}':
+    get:
+      tags:
+        - Schedules
+      summary: Get schedule details
+      description: Get details of a specific scheduled report
+      parameters:
+        - name: id
+          in: path
+          description: Schedule ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Schedule details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduleDetailResponse'
+        '404':
+          description: Schedule not found
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    
+    put:
+      tags:
+        - Schedules
+      summary: Update scheduled report
+      description: Update an existing scheduled report
+      parameters:
+        - name: id
+          in: path
+          description: Schedule ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateScheduleRequest'
+      responses:
+        '200':
+          description: Schedule updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduleResponse'
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          description: Schedule not found
+        '422':
+          $ref: '#/components/responses/ValidationError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    
+    delete:
+      tags:
+        - Schedules
+      summary: Delete scheduled report
+      description: Delete a scheduled report
+      parameters:
+        - name: id
+          in: path
+          description: Schedule ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Schedule deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: "Schedule deleted successfully"
+        '404':
+          description: Schedule not found
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  '/dashboard/schedules/{id}/execute':
+    post:
+      tags:
+        - Schedules
+      summary: Execute scheduled report
+      description: Manually trigger a scheduled report execution
+      parameters:
+        - name: id
+          in: path
+          description: Schedule ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Execution triggered successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExecuteScheduleResponse'
+        '404':
+          description: Schedule not found
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  '/dashboard/schedules/{id}/executions':
+    get:
+      tags:
+        - Schedules
+      summary: Get execution history
+      description: Get execution history for a scheduled report
+      parameters:
+        - name: id
+          in: path
+          description: Schedule ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: Execution history retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExecutionHistoryResponse'
+        '404':
+          description: Schedule not found
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /dashboard/share/generate-link:
+    post:
+      tags:
+        - Sharing
+      summary: Generate shareable link
+      description: Generate a secure shareable link with expiration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenerateLinkRequest'
+      responses:
+        '200':
+          description: Shareable link generated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenerateLinkResponse'
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  '/dashboard/share/{token}':
+    get:
+      tags:
+        - Sharing
+      summary: Access shared dashboard
+      description: Access dashboard via shareable link
+      parameters:
+        - name: token
+          in: path
+          description: Share token
+          required: true
+          schema:
+            type: string
+      responses:
+        '302':
+          description: Redirect to dashboard with filters applied
+        '404':
+          description: Share link not found or expired
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /dashboard/export/advanced:
+    post:
+      tags:
+        - Export
+      summary: Advanced export
+      description: Advanced export with custom options and branding
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdvancedExportRequest'
+      responses:
+        '200':
+          description: Export completed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedExportResponse'
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
 components:
   schemas:
     StatisticsResponse:
@@ -689,6 +986,451 @@ components:
           format: date-time
           example: "2025-09-01T10:30:00Z"
 
+    # Schedule Management Schemas
+    CreateScheduleRequest:
+      type: object
+      required:
+        - name
+        - reportType
+        - frequency
+        - schedule
+        - recipients
+        - formats
+      properties:
+        name:
+          type: string
+          example: "Weekly PBNU Overview"
+        reportType:
+          type: string
+          enum: [overview, activation, statistics, trends, complete]
+          example: "overview"
+        frequency:
+          type: string
+          enum: [daily, weekly, monthly]
+          example: "weekly"
+        schedule:
+          type: object
+          properties:
+            dayOfWeek:
+              type: integer
+              minimum: 0
+              maximum: 6
+              description: "0=Sunday, 1=Monday, etc. Required for weekly"
+              example: 1
+            dayOfMonth:
+              oneOf:
+                - type: integer
+                  minimum: 1
+                  maximum: 31
+                - type: string
+                  enum: [last]
+              description: "Day of month (1-31) or 'last'. Required for monthly"
+              example: 15
+            time:
+              type: string
+              pattern: "^([01]?[0-9]|2[0-3]):[0-5][0-9]$"
+              example: "09:00"
+          required:
+            - time
+        recipients:
+          type: array
+          items:
+            type: string
+            format: email
+          minItems: 1
+          example: ["admin@pbnu.org", "manager@pbnu.org"]
+        formats:
+          type: array
+          items:
+            type: string
+            enum: [pdf, excel]
+          minItems: 1
+          example: ["pdf", "excel"]
+        filters:
+          type: object
+          additionalProperties: true
+          example:
+            wilayah: "Pusat"
+            tingkat: "Pengurus"
+        customMessage:
+          type: string
+          example: "Weekly dashboard report for PBNU management."
+        isActive:
+          type: boolean
+          default: true
+
+    UpdateScheduleRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        recipients:
+          type: array
+          items:
+            type: string
+            format: email
+          minItems: 1
+        isActive:
+          type: boolean
+        customMessage:
+          type: string
+        schedule:
+          type: object
+          properties:
+            dayOfWeek:
+              type: integer
+              minimum: 0
+              maximum: 6
+            dayOfMonth:
+              oneOf:
+                - type: integer
+                  minimum: 1
+                  maximum: 31
+                - type: string
+                  enum: [last]
+            time:
+              type: string
+              pattern: "^([01]?[0-9]|2[0-3]):[0-5][0-9]$"
+
+    ScheduleResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: "Schedule created successfully"
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+              format: uuid
+              example: "123e4567-e89b-12d3-a456-426614174000"
+            name:
+              type: string
+              example: "Weekly PBNU Overview"
+            reportType:
+              type: string
+              example: "overview"
+            frequency:
+              type: string
+              example: "weekly"
+            schedule:
+              type: object
+              additionalProperties: true
+              example:
+                dayOfWeek: 1
+                time: "09:00"
+            recipients:
+              type: array
+              items:
+                type: string
+              example: ["admin@pbnu.org", "manager@pbnu.org"]
+            formats:
+              type: array
+              items:
+                type: string
+              example: ["pdf", "excel"]
+            filters:
+              type: object
+              additionalProperties: true
+            customMessage:
+              type: string
+            isActive:
+              type: boolean
+              example: true
+            nextExecution:
+              type: string
+              format: date-time
+              example: "2025-09-08T09:00:00Z"
+            createdAt:
+              type: string
+              format: date-time
+              example: "2025-09-01T10:30:00Z"
+            updatedAt:
+              type: string
+              format: date-time
+              example: "2025-09-01T10:30:00Z"
+
+    SchedulesListResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: "Scheduled reports retrieved successfully"
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScheduleResponse/properties/data'
+        meta:
+          $ref: '#/components/schemas/PaginationMeta'
+
+    ScheduleDetailResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: "Schedule details retrieved successfully"
+        data:
+          allOf:
+            - $ref: '#/components/schemas/ScheduleResponse/properties/data'
+            - type: object
+              properties:
+                executions:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        format: uuid
+                      executionTime:
+                        type: string
+                        format: date-time
+                      status:
+                        type: string
+                        enum: [success, failed, partial]
+                      recipientsSent:
+                        type: integer
+                      recipientsFailed:
+                        type: integer
+                      executionDuration:
+                        type: integer
+                        description: "Duration in milliseconds"
+                      errorMessage:
+                        type: string
+                nextExecutions:
+                  type: array
+                  items:
+                    type: string
+                    format: date-time
+                  description: "Next 5 scheduled execution times"
+
+    ExecuteScheduleResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: "Execution triggered successfully"
+        data:
+          type: object
+          properties:
+            executionId:
+              type: string
+              format: uuid
+              example: "456e7890-e89b-12d3-a456-426614174001"
+            status:
+              type: string
+              enum: [queued, processing, completed, failed]
+              example: "queued"
+            estimatedCompletion:
+              type: string
+              format: date-time
+              example: "2025-09-01T10:35:00Z"
+
+    ExecutionHistoryResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: "Execution history retrieved successfully"
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+              executionTime:
+                type: string
+                format: date-time
+              status:
+                type: string
+                enum: [success, failed, partial]
+              recipientsSent:
+                type: integer
+              recipientsFailed:
+                type: integer
+              filePaths:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      enum: [pdf, excel]
+                    path:
+                      type: string
+                    size:
+                      type: integer
+              executionDuration:
+                type: integer
+              errorMessage:
+                type: string
+        meta:
+          $ref: '#/components/schemas/PaginationMeta'
+
+    # Enhanced Sharing Schemas
+    GenerateLinkRequest:
+      type: object
+      required:
+        - expiration
+      properties:
+        expiration:
+          type: string
+          enum: ['24h', '7d', '30d', 'never']
+          example: "7d"
+        filters:
+          type: object
+          additionalProperties: true
+          example:
+            wilayah: "Pusat"
+            tingkat: "Pengurus"
+        includeCharts:
+          type: boolean
+          default: true
+        customMessage:
+          type: string
+
+    GenerateLinkResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: "Shareable link generated successfully"
+        data:
+          type: object
+          properties:
+            shareableUrl:
+              type: string
+              format: uri
+              example: "https://dashboard.persuratan-pbnu.com/share/abc123def456"
+            shareToken:
+              type: string
+              example: "abc123def456"
+            expiresAt:
+              type: string
+              format: date-time
+              nullable: true
+              example: "2025-09-08T10:30:00Z"
+            createdAt:
+              type: string
+              format: date-time
+              example: "2025-09-01T10:30:00Z"
+
+    AdvancedExportRequest:
+      type: object
+      required:
+        - reportType
+        - format
+      properties:
+        reportType:
+          type: string
+          enum: [overview, activation, statistics, trends, complete]
+          example: "complete"
+        format:
+          type: string
+          enum: [pdf, excel, csv]
+          example: "pdf"
+        options:
+          type: object
+          properties:
+            includeCharts:
+              type: boolean
+              default: true
+            includeSummary:
+              type: boolean
+              default: true
+            customTitle:
+              type: string
+              example: "PBNU Monthly Report"
+            dateRange:
+              type: object
+              properties:
+                from:
+                  type: string
+                  format: date
+                  example: "2025-08-01"
+                to:
+                  type: string
+                  format: date
+                  example: "2025-08-31"
+        filters:
+          type: object
+          additionalProperties: true
+          example:
+            wilayah: "Pusat"
+        branding:
+          type: object
+          properties:
+            logo:
+              type: boolean
+              default: true
+            organizationName:
+              type: string
+              example: "PBNU Pusat"
+            reportDate:
+              type: string
+              format: date
+              example: "2025-09-01"
+
+    AdvancedExportResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: "Export completed successfully"
+        data:
+          type: object
+          properties:
+            downloadUrl:
+              type: string
+              format: uri
+              example: "https://api.persuratan-pbnu.com/exports/download/report123.pdf"
+            filename:
+              type: string
+              example: "pbnu-monthly-report-2025-09-01.pdf"
+            expiresAt:
+              type: string
+              format: date-time
+              example: "2025-09-01T14:30:00Z"
+            fileSize:
+              type: integer
+              description: "File size in bytes"
+              example: 2048576
+            format:
+              type: string
+              example: "pdf"
+            pages:
+              type: integer
+              description: "Number of pages (PDF only)"
+              example: 12
+            records:
+              type: integer
+              description: "Number of data records (Excel/CSV only)"
+              example: 1500
+
   parameters:
     Page:
       name: page
@@ -827,3 +1569,9 @@ components:
 tags:
   - name: Dashboard
     description: Dashboard overview and analytics endpoints
+  - name: Schedules
+    description: Scheduled report management endpoints
+  - name: Sharing
+    description: Enhanced sharing and link generation endpoints
+  - name: Export
+    description: Advanced export functionality with custom branding
