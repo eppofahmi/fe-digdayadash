@@ -7,7 +7,7 @@
             src="/footerlogo.svg" 
             alt="PBNU Logo" 
             class="h-8 w-auto"
-          />
+          >
         </div>
         <div class="flex gap-6">
           <a href="/katalog-data" class="text-gray-400 text-sm hover:text-white transition-colors">

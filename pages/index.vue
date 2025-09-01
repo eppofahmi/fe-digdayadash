@@ -26,6 +26,11 @@
 <script setup lang="ts">
 // Use default layout
 
+// Protect this route with authentication
+definePageMeta({
+  middleware: 'auth'
+})
+
 // Page metadata
 useHead({
   title: 'Dashboard Implementasi Persuratan NU',

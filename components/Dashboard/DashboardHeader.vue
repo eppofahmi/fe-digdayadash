@@ -6,7 +6,7 @@
         src="/supergraphic-left.svg" 
         alt="" 
         class="h-full w-full object-contain object-left"
-      />
+      >
     </div>
     
     <!-- Right supergraphic -->
@@ -15,7 +15,7 @@
         src="/supergraphic-right.svg" 
         alt="" 
         class="h-full w-full object-contain object-right"
-      />
+      >
     </div>
     
     <!-- Content (positioned above background graphics) -->
