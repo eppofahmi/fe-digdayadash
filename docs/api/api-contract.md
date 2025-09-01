@@ -8,6 +8,32 @@ This document defines the API contract between the Vue.js/Nuxt.js frontend and t
 **Authentication**: Bearer Token (JWT)  
 **Content-Type**: `application/json`
 
+## Table of Contents
+
+1. [Dashboard Overview Statistics](#1-dashboard-overview-statistics)
+2. [Organization Activation Data](#2-organization-activation-data)
+3. [Organization Letter Statistics](#3-organization-letter-statistics)
+4. [Letter Volume Trends](#4-letter-volume-trends)
+5. [Filter Options](#5-filter-options)
+6. [Data Export](#6-data-export)
+7. [Search Functionality](#7-search-functionality)
+8. [Schedule Reports Management](#8-schedule-reports-management)
+   - [Create Schedule](#post-dashboardschedules)
+   - [List Schedules](#get-dashboardschedules)
+   - [Get Schedule Details](#get-dashboardschedulesid)
+   - [Update Schedule](#put-dashboardschedulesid)
+   - [Delete Schedule](#delete-dashboardschedulesid)
+   - [Execute Schedule](#post-dashboardschedulesidexecute)
+   - [Execution History](#get-dashboardschedulesidexecutions)
+9. [Enhanced Sharing Features](#9-enhanced-sharing-features)
+   - [Generate Shareable Link](#post-dashboardsharegenerate-link)
+   - [Access Shared Dashboard](#get-dashboardsharetoken)
+   - [Advanced Export](#post-dashboardexportadvanced)
+10. [Real-time Updates (WebSocket)](#10-real-time-updates-websocket)
+11. [Error Handling](#11-error-handling)
+12. [Rate Limiting](#12-rate-limiting)
+13. [Security Considerations](#13-security-considerations)
+
 ---
 
 ## 1. Dashboard Overview Statistics
