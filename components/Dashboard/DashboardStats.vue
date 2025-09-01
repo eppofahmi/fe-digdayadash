@@ -3,10 +3,12 @@
     <!-- Action Buttons - Top Right -->
     <div class="flex justify-end mb-4">
       <div class="flex gap-3">
-        <BaseButton variant="secondary" size="sm" @click="handleShare">
+        <BaseButton variant="secondary" size="sm" @click="showShareModal = true">
+          <Share2 class="w-4 h-4 mr-1" />
           Share
         </BaseButton>
         <BaseButton variant="secondary" size="sm" @click="handleCopyLink">
+          <Link class="w-4 h-4 mr-1" />
           Link
         </BaseButton>
       </div>
@@ -28,12 +30,36 @@
         <div class="text-sm text-gray-600">{{ stat.description }}</div>
       </BaseCard>
     </div>
+
+    <!-- Share Modal -->
+    <DashboardShareModal
+      v-model="showShareModal"
+      :current-filters="currentFilters"
+      @share="handleShare"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
-import { MailCheck, Users, Send, MailPlus, BookMarked, StickyNote } from 'lucide-vue-next'
+import { 
+  MailCheck, 
+  Users, 
+  Send, 
+  MailPlus, 
+  BookMarked, 
+  StickyNote,
+  Share2,
+  Link
+} from 'lucide-vue-next'
 import type { Component } from 'vue'
+
+interface Props {
+  currentFilters?: Record<string, any>
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  currentFilters: () => ({})
+})
 
 interface StatisticCard {
   icon: Component
@@ -81,16 +107,45 @@ const statistics: StatisticCard[] = [
   }
 ]
 
-const handleShare = () => {
-  console.log('Share statistics')
-}
+// State
+const showShareModal = ref(false)
 
+// Composables
+const { copyCurrentLink, shareViaEmail, exportData } = useSharing()
+
+// Methods
 const handleCopyLink = async () => {
   try {
-    await navigator.clipboard.writeText(window.location.href)
-    console.log('Link copied')
+    await copyCurrentLink(props.currentFilters)
   } catch (err) {
     console.error('Failed to copy link:', err)
+  }
+}
+
+const handleShare = async (type: string, options?: any) => {
+  try {
+    switch (type) {
+      case 'email':
+        await shareViaEmail('Dashboard Persuratan PBNU - Statistics', {
+          includeFilters: true,
+          ...options
+        })
+        break
+        
+      case 'export':
+        await exportData('statistics', options)
+        break
+        
+      case 'schedule':
+        // Handle schedule report - would open another modal
+        console.log('Schedule report requested', options)
+        break
+        
+      default:
+        console.log('Share action:', type, options)
+    }
+  } catch (err) {
+    console.error('Share failed:', err)
   }
 }
 </script>

@@ -15,11 +15,15 @@ interface _GlobalComponents {
       'BaseButton': typeof import("../components/Base/BaseButton.vue")['default']
     'BaseCard': typeof import("../components/Base/BaseCard.vue")['default']
     'BaseEChart': typeof import("../components/Base/BaseEChart.vue")['default']
+    'BaseModal': typeof import("../components/Base/BaseModal.vue")['default']
     'BasePagination': typeof import("../components/Base/BasePagination.vue")['default']
     'BaseSelect': typeof import("../components/Base/BaseSelect.vue")['default']
+    'BaseToast': typeof import("../components/Base/BaseToast.vue")['default']
     'DashboardActivationTable': typeof import("../components/Dashboard/DashboardActivationTable.vue")['default']
     'DashboardFilters': typeof import("../components/Dashboard/DashboardFilters.vue")['default']
     'DashboardHeader': typeof import("../components/Dashboard/DashboardHeader.vue")['default']
+    'DashboardScheduleModal': typeof import("../components/Dashboard/DashboardScheduleModal.vue")['default']
+    'DashboardShareModal': typeof import("../components/Dashboard/DashboardShareModal.vue")['default']
     'DashboardStatisticsTable': typeof import("../components/Dashboard/DashboardStatisticsTable.vue")['default']
     'DashboardStats': typeof import("../components/Dashboard/DashboardStats.vue")['default']
     'DashboardTrendChart': typeof import("../components/Dashboard/DashboardTrendChart.vue")['default']
@@ -52,11 +56,15 @@ interface _GlobalComponents {
       'LazyBaseButton': LazyComponent<typeof import("../components/Base/BaseButton.vue")['default']>
     'LazyBaseCard': LazyComponent<typeof import("../components/Base/BaseCard.vue")['default']>
     'LazyBaseEChart': LazyComponent<typeof import("../components/Base/BaseEChart.vue")['default']>
+    'LazyBaseModal': LazyComponent<typeof import("../components/Base/BaseModal.vue")['default']>
     'LazyBasePagination': LazyComponent<typeof import("../components/Base/BasePagination.vue")['default']>
     'LazyBaseSelect': LazyComponent<typeof import("../components/Base/BaseSelect.vue")['default']>
+    'LazyBaseToast': LazyComponent<typeof import("../components/Base/BaseToast.vue")['default']>
     'LazyDashboardActivationTable': LazyComponent<typeof import("../components/Dashboard/DashboardActivationTable.vue")['default']>
     'LazyDashboardFilters': LazyComponent<typeof import("../components/Dashboard/DashboardFilters.vue")['default']>
     'LazyDashboardHeader': LazyComponent<typeof import("../components/Dashboard/DashboardHeader.vue")['default']>
+    'LazyDashboardScheduleModal': LazyComponent<typeof import("../components/Dashboard/DashboardScheduleModal.vue")['default']>
+    'LazyDashboardShareModal': LazyComponent<typeof import("../components/Dashboard/DashboardShareModal.vue")['default']>
     'LazyDashboardStatisticsTable': LazyComponent<typeof import("../components/Dashboard/DashboardStatisticsTable.vue")['default']>
     'LazyDashboardStats': LazyComponent<typeof import("../components/Dashboard/DashboardStats.vue")['default']>
     'LazyDashboardTrendChart': LazyComponent<typeof import("../components/Dashboard/DashboardTrendChart.vue")['default']>
@@ -95,11 +103,15 @@ declare module 'vue' {
 export const BaseButton: typeof import("../components/Base/BaseButton.vue")['default']
 export const BaseCard: typeof import("../components/Base/BaseCard.vue")['default']
 export const BaseEChart: typeof import("../components/Base/BaseEChart.vue")['default']
+export const BaseModal: typeof import("../components/Base/BaseModal.vue")['default']
 export const BasePagination: typeof import("../components/Base/BasePagination.vue")['default']
 export const BaseSelect: typeof import("../components/Base/BaseSelect.vue")['default']
+export const BaseToast: typeof import("../components/Base/BaseToast.vue")['default']
 export const DashboardActivationTable: typeof import("../components/Dashboard/DashboardActivationTable.vue")['default']
 export const DashboardFilters: typeof import("../components/Dashboard/DashboardFilters.vue")['default']
 export const DashboardHeader: typeof import("../components/Dashboard/DashboardHeader.vue")['default']
+export const DashboardScheduleModal: typeof import("../components/Dashboard/DashboardScheduleModal.vue")['default']
+export const DashboardShareModal: typeof import("../components/Dashboard/DashboardShareModal.vue")['default']
 export const DashboardStatisticsTable: typeof import("../components/Dashboard/DashboardStatisticsTable.vue")['default']
 export const DashboardStats: typeof import("../components/Dashboard/DashboardStats.vue")['default']
 export const DashboardTrendChart: typeof import("../components/Dashboard/DashboardTrendChart.vue")['default']
@@ -132,11 +144,15 @@ export const NuxtRouteAnnouncer: typeof import("../node_modules/nuxt/dist/app/co
 export const LazyBaseButton: LazyComponent<typeof import("../components/Base/BaseButton.vue")['default']>
 export const LazyBaseCard: LazyComponent<typeof import("../components/Base/BaseCard.vue")['default']>
 export const LazyBaseEChart: LazyComponent<typeof import("../components/Base/BaseEChart.vue")['default']>
+export const LazyBaseModal: LazyComponent<typeof import("../components/Base/BaseModal.vue")['default']>
 export const LazyBasePagination: LazyComponent<typeof import("../components/Base/BasePagination.vue")['default']>
 export const LazyBaseSelect: LazyComponent<typeof import("../components/Base/BaseSelect.vue")['default']>
+export const LazyBaseToast: LazyComponent<typeof import("../components/Base/BaseToast.vue")['default']>
 export const LazyDashboardActivationTable: LazyComponent<typeof import("../components/Dashboard/DashboardActivationTable.vue")['default']>
 export const LazyDashboardFilters: LazyComponent<typeof import("../components/Dashboard/DashboardFilters.vue")['default']>
 export const LazyDashboardHeader: LazyComponent<typeof import("../components/Dashboard/DashboardHeader.vue")['default']>
+export const LazyDashboardScheduleModal: LazyComponent<typeof import("../components/Dashboard/DashboardScheduleModal.vue")['default']>
+export const LazyDashboardShareModal: LazyComponent<typeof import("../components/Dashboard/DashboardShareModal.vue")['default']>
 export const LazyDashboardStatisticsTable: LazyComponent<typeof import("../components/Dashboard/DashboardStatisticsTable.vue")['default']>
 export const LazyDashboardStats: LazyComponent<typeof import("../components/Dashboard/DashboardStats.vue")['default']>
 export const LazyDashboardTrendChart: LazyComponent<typeof import("../components/Dashboard/DashboardTrendChart.vue")['default']>

@@ -10,6 +10,9 @@
     
     <!-- Footer -->
     <LayoutFooter />
+    
+    <!-- Global Toast Notifications -->
+    <BaseToast />
   </div>
 </template>
 
