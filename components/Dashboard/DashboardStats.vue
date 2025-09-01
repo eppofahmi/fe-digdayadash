@@ -24,14 +24,14 @@
         class="text-center"
       >
         <div class="p-3">
-          <div class="w-6 h-6 bg-[#daf8e3] rounded-lg flex items-center justify-center mx-auto mb-1">
-            <component :is="stat.icon" class="w-3 h-3 text-[var(--secondary-teal)]" />
+          <div class="w-8 h-8 bg-[#daf8e3] rounded-lg flex items-center justify-center mx-auto mb-1">
+            <component :is="stat.icon" class="w-4 h-4 text-[var(--secondary-teal)]" />
           </div>
           <div class="text-xs text-gray-600 mb-1 font-bold leading-tight uppercase text-center">
             <div v-for="line in stat.label.split(' ')" :key="line">{{ line }}</div>
           </div>
           <div class="w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mb-2"></div>
-          <div class="mb-1">
+          <div>
             <span class="text-2xl font-bold text-gray-900">{{ stat.value }}</span>
             <span v-if="stat.percentage" class="text-base font-medium text-[#017534] ml-2">{{ stat.percentage }}</span>
           </div>
