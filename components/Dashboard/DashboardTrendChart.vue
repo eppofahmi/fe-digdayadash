@@ -16,7 +16,7 @@
     </template>
     
     <!-- Time Filter -->
-    <div class="px-6 py-5 bg-gray-50 border-b border-gray-200 flex flex-wrap items-center justify-between gap-4">
+    <div class="px-6 pb-4 pt-2 bg-white border-b border-gray-200 flex flex-wrap items-center justify-between gap-4">
       <!-- Time Options -->
       <div class="flex items-center gap-1 bg-white p-1 rounded-lg border border-gray-200">
         <button
@@ -59,7 +59,7 @@
     </div>
     
     <!-- Statistics Summary -->
-    <div class="px-6 py-5 bg-gray-50 border-t border-gray-200 grid grid-cols-4 gap-4">
+    <div class="px-6 py-5 bg-white border-t border-gray-200 grid grid-cols-4 gap-4">
       <div class="text-center">
         <div class="text-xs text-gray-600 uppercase font-semibold tracking-wide mb-1">Total</div>
         <div class="text-2xl font-bold text-gray-900">{{ chartStats.total }}</div>

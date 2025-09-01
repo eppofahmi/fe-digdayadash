@@ -1,5 +1,5 @@
 <template>
-  <div class="px-6 py-4 bg-white border-b border-gray-200 flex items-center justify-end gap-4">
+  <div class="px-6 pb-4 pt-2 bg-white border-b border-gray-200 flex items-center justify-end gap-4">
     <!-- Filter Group -->
     <div class="flex items-center gap-3">
       <span class="font-medium text-gray-700 text-sm">Filter</span>

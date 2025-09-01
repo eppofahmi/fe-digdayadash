@@ -3,11 +3,11 @@
     <!-- Action Buttons - Top Right -->
     <div class="flex justify-end mb-4">
       <div class="flex gap-3">
-        <BaseButton variant="secondary" size="sm" @click="showShareModal = true">
+        <BaseButton variant="primary" size="sm" @click="showShareModal = true">
           <Share2 class="w-4 h-4 mr-1" />
           Share
         </BaseButton>
-        <BaseButton variant="secondary" size="sm" @click="handleCopyLink">
+        <BaseButton variant="primary" size="sm" @click="handleCopyLink">
           <Link class="w-4 h-4 mr-1" />
           Link
         </BaseButton>
