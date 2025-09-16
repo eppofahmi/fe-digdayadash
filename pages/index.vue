@@ -1,7 +1,7 @@
 <template>
   <div>
-    <!-- Hero Section -->
-    <div class="relative text-white overflow-hidden" style="width: 1440px; height: 600px; margin: 0 auto; background-image: url('/hero-image.png'); background-size: cover; background-position: center 75%; background-repeat: no-repeat; opacity: 1;">
+    <!-- Hero Section with Header Background -->
+    <div class="relative text-white overflow-hidden" style="width: 1440px; height: 680px; margin: 0 auto; margin-top: -80px; background-image: url('/hero-image.png'); background-size: cover; background-position: center 75%; background-repeat: no-repeat; opacity: 1;">
       <!-- Gradient overlay on top of hero image -->
       <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.3) 26%, rgba(0,0,0,0.5) 49%, rgba(0,0,0,0.7) 70%, rgba(0,0,0,0.8) 95%);"></div>
       <!-- Left supergraphic -->
@@ -23,7 +23,7 @@
       </div>
 
       <!-- Content -->
-      <div class="relative z-30 max-w-6xl mx-auto px-5 pt-80 pb-16">
+      <div class="relative z-30 max-w-6xl mx-auto px-5 pt-96 pb-16">
         <div class="text-center">
           <h1 class="mb-6" style="font-family: 'Helvetica Neue', sans-serif; font-weight: 500; font-size: 40px; line-height: 100%; letter-spacing: 0.5%; text-align: center;">
             Portal Satu Data Nahdlatul Ulama

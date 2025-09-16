@@ -1,12 +1,12 @@
 <template>
-  <header class="bg-white text-gray-800 py-2 sticky top-0 z-50 shadow-sm">
+  <header class="text-gray-800 py-2 sticky top-0 z-50" :class="isHomePage ? 'bg-transparent text-white' : 'bg-white shadow-sm'">
     <div class="max-w-6xl mx-auto px-5">
       <div class="flex items-center justify-between">
         <!-- Logo Section -->
         <div class="flex items-center">
           <div class="logo cursor-pointer" @click="navigateTo('/')">
             <img
-              src="/headerlogo.svg"
+              src="/footerlogo.svg"
               alt="PBNU Dashboard"
               class="h-10 w-auto"
             >
@@ -90,14 +90,31 @@ const isDashboardActive = computed(() => {
   return dashboardItems.some(item => route?.path === item.href)
 })
 
-const navItemClasses = (active?: boolean) => {
-  const baseClasses = 'text-gray-600 no-underline py-2 border-b-2 border-transparent transition-colors duration-200'
-  const activeClasses = 'text-[var(--primary-green)] border-[var(--primary-green)]'
-  const hoverClasses = 'hover:text-[var(--primary-green)] hover:border-[var(--primary-green)] hover:border-opacity-50'
+const isHomePage = computed(() => {
+  return route?.path === '/'
+})
 
-  return [
-    baseClasses,
-    active ? activeClasses : hoverClasses
-  ].join(' ')
+const navItemClasses = (active?: boolean) => {
+  if (isHomePage.value) {
+    // Homepage styles (transparent header with white text)
+    const baseClasses = 'text-white no-underline py-2 border-b-2 border-transparent transition-colors duration-200'
+    const activeClasses = 'text-white border-white'
+    const hoverClasses = 'hover:text-white hover:border-white hover:border-opacity-50'
+
+    return [
+      baseClasses,
+      active ? activeClasses : hoverClasses
+    ].join(' ')
+  } else {
+    // Other pages styles (white header with dark text)
+    const baseClasses = 'text-gray-600 no-underline py-2 border-b-2 border-transparent transition-colors duration-200'
+    const activeClasses = 'text-[var(--primary-green)] border-[var(--primary-green)]'
+    const hoverClasses = 'hover:text-[var(--primary-green)] hover:border-[var(--primary-green)] hover:border-opacity-50'
+
+    return [
+      baseClasses,
+      active ? activeClasses : hoverClasses
+    ].join(' ')
+  }
 }
 </script>
