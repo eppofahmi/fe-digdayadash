@@ -174,9 +174,13 @@
 
       <!-- SATUDATA Access Section -->
       <section>
-        <div class="rounded-xl p-4 sm:p-6 md:p-8 text-white relative overflow-hidden" style="background-image: url('/b70c4a3f65888845e84b255d615b8ce4ad5e2af7.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
-          <!-- Gradient overlay on top of image -->
-          <div class="absolute inset-0 bg-gradient-to-r from-[#134E4A] via-[#134E4A]/80 to-transparent rounded-xl" />
+        <div class="rounded-3xl p-4 sm:p-6 md:p-8 text-white relative overflow-hidden"
+             style="
+               background:
+                 linear-gradient(90deg, #134E4A 45.35%, rgba(0, 0, 0, 0) 100%),
+                 url('/section-satudata.png') center / cover no-repeat,
+                 #000000;
+             ">
           <div class="relative z-10">
             <h2 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-4">Akses SATUDATA Digdaya NU</h2>
             <p class="text-white text-opacity-90 w-full sm:w-[80%] md:w-[60%] text-sm sm:text-base">
