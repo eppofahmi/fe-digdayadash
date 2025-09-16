@@ -105,30 +105,48 @@
 
       <!-- Ekosistem Data dan Digital NU Section -->
       <section class="mb-16">
-        <div class="text-center mb-12">
+        <div class="text-center mb-6">
           <h2 class="text-3xl font-bold text-gray-900 mb-4">Ekosistem Data dan Digital NU</h2>
           <p class="text-gray-600">Platform digital terintegrasi untuk mendukung transformasi digital organisasi Nahdlatul Ulama</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <!-- DIGDAYA Items -->
-          <div
-            v-for="digdaya in digdayaApps"
-            :key="digdaya.name"
-            class="text-center cursor-pointer p-4 rounded-xl hover:bg-gray-50 transition-colors duration-200"
+        <!-- Swiper Container -->
+        <div class="relative">
+          <Swiper
+            :modules="[Navigation]"
+            :slides-per-view="1.2"
+            :space-between="5"
+            :navigation="true"
+            :centered-slides="true"
+            :breakpoints="{
+              640: { slidesPerView: 1.5, spaceBetween: 5, centeredSlides: true },
+              1024: { slidesPerView: 2.5, spaceBetween: 5, centeredSlides: true }
+            }"
+            class="ekosistem-swiper"
           >
-            <!-- Logo -->
-            <div class="w-32 h-32 mx-auto">
-              <img
-                :src="digdaya.logo"
-                :alt="digdaya.name"
-                class="w-full h-full object-contain"
-              >
-            </div>
+            <SwiperSlide
+              v-for="digdaya in digdayaApps"
+              :key="digdaya.name"
+            >
+              <!-- DIGDAYA Item -->
+              <div class="text-center cursor-pointer p-4 rounded-xl hover:bg-gray-50 transition-colors duration-200">
+                <!-- Logo and Text as Unified Component -->
+                <div class="flex flex-col items-center">
+                  <!-- Logo -->
+                  <div class="w-32 h-32 -mb-10">
+                    <img
+                      :src="digdaya.logo"
+                      :alt="digdaya.name"
+                      class="w-full h-full object-contain"
+                    >
+                  </div>
 
-            <!-- Text Content -->
-            <p class="text-sm text-gray-700 font-medium px-2 -mt-4">{{ digdaya.description }}</p>
-          </div>
+                  <!-- Text Content -->
+                  <p class="text-sm text-gray-700 font-medium px-2 leading-none">{{ digdaya.description }}</p>
+                </div>
+              </div>
+            </SwiperSlide>
+          </Swiper>
         </div>
       </section>
 
@@ -169,6 +187,12 @@ import {
   TreePine,
   HelpCircle
 } from 'lucide-vue-next'
+
+// Swiper imports
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import { Navigation } from 'swiper/modules'
+import 'swiper/css'
+import 'swiper/css/navigation'
 
 // Page metadata
 useHead({
@@ -261,3 +285,32 @@ const digdayaApps = [
   }
 ]
 </script>
+
+<style>
+.ekosistem-swiper .swiper-button-next,
+.ekosistem-swiper .swiper-button-prev {
+  color: #067936;
+  background: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ekosistem-swiper .swiper-button-next:after,
+.ekosistem-swiper .swiper-button-prev:after {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+
+.ekosistem-swiper .swiper-slide {
+  opacity: 0.4;
+  transition: opacity 0.3s ease;
+}
+
+.ekosistem-swiper .swiper-slide-active,
+.ekosistem-swiper .swiper-slide-next {
+  opacity: 1;
+}
+</style>
