@@ -1,9 +1,11 @@
 <template>
   <div>
     <!-- Hero Section -->
-    <div class="relative min-h-[70vh] text-white overflow-hidden" style="background: linear-gradient(to bottom right, #00491E, #1E9A3F)">
+    <div class="relative min-h-[70vh] text-white overflow-hidden" style="background-image: url('/hero-image.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+      <!-- Gradient overlay on top of hero image -->
+      <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.3) 26%, rgba(0,0,0,0.5) 49%, rgba(0,0,0,0.7) 70%, rgba(0,0,0,0.8) 95%);"></div>
       <!-- Left supergraphic -->
-      <div class="absolute left-0 top-0 w-64 h-full opacity-30 pointer-events-none">
+      <div class="absolute left-0 top-0 w-64 h-full opacity-30 pointer-events-none z-20">
         <img
           src="/supergraphic-left.svg"
           alt=""
@@ -12,7 +14,7 @@
       </div>
 
       <!-- Right supergraphic -->
-      <div class="absolute right-0 top-0 w-96 h-full opacity-30 pointer-events-none">
+      <div class="absolute right-0 top-0 w-96 h-full opacity-30 pointer-events-none z-20">
         <img
           src="/supergraphic-right.svg"
           alt=""
@@ -21,7 +23,7 @@
       </div>
 
       <!-- Content -->
-      <div class="relative z-10 max-w-6xl mx-auto px-5 pt-20 pb-16">
+      <div class="relative z-30 max-w-6xl mx-auto px-5 pt-20 pb-16">
         <div class="text-center">
           <h1 class="text-5xl font-bold mb-6">
             Portal Satu Data Nahdlatul Ulama
@@ -152,11 +154,15 @@
 
       <!-- SATUDATA Access Section -->
       <section>
-        <div class="rounded-xl p-8 text-white" style="background: linear-gradient(to right, #134E4A, #00000000);">
-          <h2 class="text-2xl font-bold mb-4">Akses SATUDATA Digdaya NU</h2>
-          <p class="text-white text-opacity-90 w-[60%]">
-            SATUDATA Digdaya NU menghadirkan pusat data yang akurat, terbuka, dan dapat diakses oleh publik untuk mendukung transparansi dan pengambilan kebijakan di lingkungan Nahdlatul Ulama.
-          </p>
+        <div class="rounded-xl p-8 text-white relative overflow-hidden" style="background-image: url('/b70c4a3f65888845e84b255d615b8ce4ad5e2af7.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+          <!-- Gradient overlay on top of image -->
+          <div class="absolute inset-0 bg-gradient-to-r from-[#134E4A] via-[#134E4A]/80 to-transparent rounded-xl"></div>
+          <div class="relative z-10">
+            <h2 class="text-2xl font-bold mb-4">Akses SATUDATA Digdaya NU</h2>
+            <p class="text-white text-opacity-90 w-[60%]">
+              SATUDATA Digdaya NU menghadirkan pusat data yang akurat, terbuka, dan dapat diakses oleh publik untuk mendukung transparansi dan pengambilan kebijakan di lingkungan Nahdlatul Ulama.
+            </p>
+          </div>
         </div>
       </section>
     </div>

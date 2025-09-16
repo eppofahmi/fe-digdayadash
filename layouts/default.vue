@@ -4,7 +4,7 @@
     <LayoutHeader />
     
     <!-- Main Content -->
-    <main class="flex-1 py-6">
+    <main class="flex-1">
       <slot />
     </main>
     
