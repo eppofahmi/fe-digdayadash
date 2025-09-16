@@ -15,13 +15,41 @@
 
         <!-- Navigation Menu -->
         <nav class="flex gap-8">
+          <!-- Dasbor with Dropdown -->
+          <div class="relative" @mouseleave="showDropdown = false">
+            <button
+              @mouseenter="showDropdown = true"
+              :class="navItemClasses(isDashboardActive)"
+              class="flex items-center gap-1"
+            >
+              Dasbor
+              <ChevronDown class="w-4 h-4" />
+            </button>
+
+            <!-- Dropdown Menu -->
+            <div
+              v-show="showDropdown"
+              @mouseenter="showDropdown = true"
+              class="absolute top-full left-0 mt-1 w-80 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50"
+            >
+              <NuxtLink
+                v-for="dashboard in dashboardItems"
+                :key="dashboard.href"
+                :to="dashboard.href"
+                class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-[var(--primary-green)] transition-colors"
+              >
+                <div class="font-medium">{{ dashboard.label }}</div>
+                <div class="text-xs text-gray-500 mt-1">{{ dashboard.description }}</div>
+              </NuxtLink>
+            </div>
+          </div>
+
+          <!-- Tentang -->
           <NuxtLink
-            v-for="item in navItems"
-            :key="item.label"
-            :to="item.href"
-            :class="navItemClasses(item.active)"
+            to="/tentang"
+            :class="navItemClasses(route.path === '/tentang')"
           >
-            {{ item.label }}
+            Tentang
           </NuxtLink>
         </nav>
       </div>
@@ -30,13 +58,37 @@
 </template>
 
 <script setup lang="ts">
-import type { NavItem } from '~/types'
+import { ChevronDown } from 'lucide-vue-next'
 
-const navItems: NavItem[] = [
-  { label: 'Dasbor', href: '/', active: true },
-  { label: 'Dataset', href: '/dataset', active: false },
-  { label: 'Tutorial', href: '/tutorial', active: false }
+const route = useRoute()
+const showDropdown = ref(false)
+
+const dashboardItems = [
+  {
+    label: 'Dashboard Monitoring Persuratan NU',
+    description: 'Sistem tata kelola administrasi persuratan dan dokumen organisasi',
+    href: '/dashboard-persuratan'
+  },
+  {
+    label: 'Dashboard Persebaran Pesantren NU',
+    description: 'Sistem manajemen data dan layanan organisasi pesantren',
+    href: '/dashboard-pesantren'
+  },
+  {
+    label: 'Dashboard Persebaran Kader NU',
+    description: 'Sistem pengelolaan kegiatan kaderisasi NU',
+    href: '/dashboard-kader'
+  },
+  {
+    label: 'Dashboard Profil Kepengurusan NU',
+    description: 'Sistem pendataan dan pengelolaan administrasi kepengurusan',
+    href: '/dashboard-kepengurusan'
+  }
 ]
+
+const isDashboardActive = computed(() => {
+  return dashboardItems.some(item => route.path === item.href)
+})
 
 const navItemClasses = (active?: boolean) => {
   const baseClasses = 'text-gray-600 no-underline py-2 border-b-2 border-transparent transition-colors duration-200'
