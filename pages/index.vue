@@ -3,7 +3,7 @@
     <!-- Hero Section with Header Background -->
     <div class="relative text-white overflow-hidden" style="width: 1440px; height: 680px; margin: 0 auto; margin-top: -80px; background-image: url('/hero-image.png'); background-size: cover; background-position: center 75%; background-repeat: no-repeat; opacity: 1;">
       <!-- Gradient overlay on top of hero image -->
-      <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.3) 26%, rgba(0,0,0,0.5) 49%, rgba(0,0,0,0.7) 70%, rgba(0,0,0,0.8) 95%);"></div>
+      <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.3) 26%, rgba(0,0,0,0.5) 49%, rgba(0,0,0,0.7) 70%, rgba(0,0,0,0.8) 95%);" />
       <!-- Left supergraphic -->
       <div class="absolute left-0 top-0 w-64 h-full opacity-30 pointer-events-none z-20">
         <img
@@ -54,9 +54,9 @@
           <!-- Scroll Indicator -->
           <div class="flex flex-col items-center cursor-pointer mb-1" @click="scrollToBottom">
             <div class="border border-white border-opacity-60 flex flex-col items-center justify-center relative" style="width: 20px; height: 32px; padding-top: 8px; padding-right: 2px; padding-bottom: 8px; padding-left: 2px; border-radius: 400px; border-width: 1px; opacity: 1;">
-              <div class="w-1 h-2 bg-white bg-opacity-60 rounded-full animate-bounce"></div>
+              <div class="w-1 h-2 bg-white bg-opacity-60 rounded-full animate-bounce" />
               <svg class="w-3 h-3 text-white text-opacity-60 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
               </svg>
             </div>
           </div>
@@ -164,7 +164,7 @@
       <section>
         <div class="rounded-xl p-8 text-white relative overflow-hidden" style="background-image: url('/b70c4a3f65888845e84b255d615b8ce4ad5e2af7.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
           <!-- Gradient overlay on top of image -->
-          <div class="absolute inset-0 bg-gradient-to-r from-[#134E4A] via-[#134E4A]/80 to-transparent rounded-xl"></div>
+          <div class="absolute inset-0 bg-gradient-to-r from-[#134E4A] via-[#134E4A]/80 to-transparent rounded-xl" />
           <div class="relative z-10">
             <h2 class="text-2xl font-bold mb-4">Akses SATUDATA Digdaya NU</h2>
             <p class="text-white text-opacity-90 w-[60%]">

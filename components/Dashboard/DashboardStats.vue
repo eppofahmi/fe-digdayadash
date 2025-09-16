@@ -30,7 +30,7 @@
           <div class="text-xs text-gray-600 mb-1 font-bold leading-tight uppercase text-center">
             <div v-for="line in stat.label.split(' ')" :key="line">{{ line }}</div>
           </div>
-          <div class="w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mb-2"></div>
+          <div class="w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mb-2" />
           <div>
             <span class="text-2xl font-bold text-gray-900">{{ stat.value }}</span>
             <span v-if="stat.percentage" class="text-base font-medium text-[#017534] ml-2">{{ stat.percentage }}</span>

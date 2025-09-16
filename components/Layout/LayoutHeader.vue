@@ -18,9 +18,9 @@
           <!-- Dasbor with Dropdown -->
           <div class="relative" @mouseleave="showDropdown = false">
             <button
-              @mouseenter="showDropdown = true"
               :class="navItemClasses(isDashboardActive)"
               class="flex items-center gap-1"
+              @mouseenter="showDropdown = true"
             >
               Dasbor
               <ChevronDown class="w-4 h-4" />
@@ -29,8 +29,8 @@
             <!-- Dropdown Menu -->
             <div
               v-show="showDropdown"
-              @mouseenter="showDropdown = true"
               class="absolute top-full left-0 mt-1 w-80 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50"
+              @mouseenter="showDropdown = true"
             >
               <NuxtLink
                 v-for="dashboard in dashboardItems"
