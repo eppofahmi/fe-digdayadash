@@ -1,0 +1,70 @@
+[build]
+  # Build command for Nuxt.js application
+  command = "npm run build"
+
+  # Output directory for the built files
+  publish = ".output/public"
+
+  # Functions directory (for Nuxt server-side rendering)
+  functions = ".output/server"
+
+[build.environment]
+  # Node.js version
+  NODE_VERSION = "18"
+
+  # npm cache directory
+  NPM_CONFIG_CACHE = "/opt/buildhome/.npm"
+
+# Redirect rules for Single Page Application
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  conditions = {Role = ["anonymous"]}
+
+# Headers for security and performance
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Cache static assets
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "/_nuxt/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+# Cache images
+[[headers]]
+  for = "/*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/*.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+# Development branch preview
+[context.deploy-preview]
+  command = "npm run build"
+
+[context.branch-deploy]
+  command = "npm run build"
+
+# Production environment
+[context.production]
+  command = "npm run build"

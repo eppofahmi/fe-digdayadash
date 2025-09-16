@@ -42,5 +42,10 @@ export default defineNuxtConfig({
   // Tailwind CSS configuration
   tailwindcss: {
     cssPath: '~/assets/css/main.css',
+  },
+
+  // Nitro configuration for deployment
+  nitro: {
+    preset: 'netlify'
   }
 })

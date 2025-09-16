@@ -71,6 +71,26 @@ Dashboard-specific functionality:
 - `DashboardStatisticsTable` - Letter statistics table
 - `DashboardTrendChart` - Interactive trend visualization
 
+## 🚀 Deployment
+
+This application is configured for automatic deployment to Netlify.
+
+### Netlify Setup
+
+- **Auto-Deploy**: Commits to `main` or `dev` branch trigger automatic deployments
+- **Build Command**: `npm run build`
+- **Publish Directory**: `.output/public`
+- **Node Version**: 18
+- **Configuration**: Uses `netlify.toml` for deployment settings
+
+### Environment Variables (Optional)
+
+Add in Netlify dashboard if needed:
+```bash
+NUXT_PUBLIC_API_BASE=https://your-api-endpoint.com
+NODE_ENV=production
+```
+
 ## 🛠️ Installation & Setup
 
 1. **Install dependencies**:
@@ -91,6 +111,12 @@ npm run build
 4. **Preview production build**:
 ```bash
 npm run preview
+```
+
+5. **Code quality**:
+```bash
+npm run lint        # Check code quality
+npm run lint:fix    # Auto-fix issues
 ```
 
 ## 📊 Key Features
