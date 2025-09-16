@@ -59,8 +59,4 @@ export default defineNuxtConfig({
     },
   },
 
-  // Nitro configuration for deployment
-  nitro: {
-    preset: 'netlify'
-  }
 })
