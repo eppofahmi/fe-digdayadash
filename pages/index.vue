@@ -26,18 +26,13 @@
 <script setup lang="ts">
 // Use default layout
 
-// Protect this route with authentication
-definePageMeta({
-  middleware: 'auth'
-})
-
 // Page metadata
 useHead({
   title: 'Dashboard Implementasi Persuratan NU',
   meta: [
-    { 
-      name: 'description', 
-      content: 'Monitoring dan evaluasi implementasi sistem persuratan digital di seluruh kepengurusan NU' 
+    {
+      name: 'description',
+      content: 'Monitoring dan evaluasi implementasi sistem persuratan digital di seluruh kepengurusan NU'
     }
   ]
 })
