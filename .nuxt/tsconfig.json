@@ -106,6 +106,12 @@
       "pinia": [
         "../node_modules/pinia/dist/pinia"
       ],
+      "#image": [
+        "../node_modules/@nuxt/image/dist/runtime"
+      ],
+      "#image/*": [
+        "../node_modules/@nuxt/image/dist/runtime/*"
+      ],
       "#vue-router": [
         "../node_modules/vue-router"
       ],
@@ -116,7 +122,7 @@
         "./imports"
       ],
       "#app-manifest": [
-        "./manifest/meta/389b9ead-d942-4291-b61a-08ef35404d2a.json"
+        "./manifest/meta/dev"
       ],
       "#components": [
         "./components"
@@ -171,10 +177,11 @@
     "../node_modules/nuxt/node_modules",
     "../node_modules/@nuxtjs/tailwindcss/node_modules",
     "../node_modules/@pinia/nuxt/node_modules",
+    "../node_modules/@nuxt/image/node_modules",
     "../node_modules/@nuxt/devtools/node_modules",
     "../node_modules/@nuxt/telemetry/node_modules",
     "../node_modules/runtime/server",
     "../node_modules/dist/runtime/server",
-    "../.output"
+    "dev"
   ]
 }

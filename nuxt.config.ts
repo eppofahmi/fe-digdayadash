@@ -11,7 +11,8 @@ export default defineNuxtConfig({
   // Modules
   modules: [
     '@nuxtjs/tailwindcss',
-    '@pinia/nuxt'
+    '@pinia/nuxt',
+    '@nuxt/image'
   ],
   
   // App configuration
@@ -44,8 +45,18 @@ export default defineNuxtConfig({
     cssPath: '~/assets/css/main.css',
   },
 
-  // Nitro configuration for deployment
-  nitro: {
-    preset: 'netlify'
-  }
+  // Image optimization configuration
+  image: {
+    quality: 80,
+    format: ['webp', 'png'],
+    screens: {
+      xs: 320,
+      sm: 640,
+      md: 768,
+      lg: 1024,
+      xl: 1280,
+      xxl: 1536,
+    },
+  },
+
 })

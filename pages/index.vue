@@ -1,9 +1,21 @@
 <template>
   <div>
     <!-- Hero Section with Header Background -->
-    <div class="relative text-white overflow-hidden w-full min-h-[400px] sm:min-h-[500px] md:min-h-[600px] lg:min-h-[680px] max-w-[1440px] mx-auto -mt-16 sm:-mt-20 bg-cover bg-no-repeat" style="background-image: url('/hero-image.png'); background-position: center 75%;">
+    <div class="relative text-white overflow-hidden w-full min-h-[400px] sm:min-h-[500px] md:min-h-[600px] lg:min-h-[680px] max-w-[1440px] mx-auto -mt-16 sm:-mt-20">
+      <!-- Optimized Hero Image -->
+      <NuxtImg
+        src="/hero-image.png"
+        alt="Portal Satu Data Nahdlatul Ulama Hero Background"
+        class="absolute inset-0 w-full h-full object-cover"
+        style="object-position: center 75%;"
+        :quality="80"
+        format="webp"
+        loading="eager"
+        preload
+        sizes="xs:320px sm:640px md:768px lg:1024px xl:1280px xxl:1536px"
+      />
       <!-- Gradient overlay on top of hero image -->
-      <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.3) 26%, rgba(0,0,0,0.5) 49%, rgba(0,0,0,0.7) 70%, rgba(0,0,0,0.8) 95%);" />
+      <div class="absolute inset-0 z-10" style="background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.3) 26%, rgba(0,0,0,0.5) 49%, rgba(0,0,0,0.7) 70%, rgba(0,0,0,0.8) 95%);" />
       <!-- Left supergraphic -->
       <div class="absolute left-0 top-0 w-24 sm:w-32 md:w-48 lg:w-64 h-full opacity-20 sm:opacity-30 pointer-events-none z-20">
         <img
