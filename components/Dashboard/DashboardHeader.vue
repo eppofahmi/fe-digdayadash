@@ -1,5 +1,5 @@
 <template>
-  <div class="relative text-white p-8 rounded-xl mb-8 overflow-hidden" style="background: linear-gradient(to bottom right, #00491E, #1E9A3F)">
+  <div class="relative text-white p-8 rounded-xl mb-8 overflow-hidden" style="background: linear-gradient(to bottom right, #32A651, #067936)">
     <!-- Left supergraphic -->
     <div class="absolute left-0 top-0 w-64 h-full opacity-30 pointer-events-none">
       <img 
