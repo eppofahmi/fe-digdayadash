@@ -1,11 +1,11 @@
 <template>
   <div>
     <!-- Hero Section with Header Background -->
-    <div class="relative text-white overflow-hidden" style="width: 1440px; height: 680px; margin: 0 auto; margin-top: -80px; background-image: url('/hero-image.png'); background-size: cover; background-position: center 75%; background-repeat: no-repeat; opacity: 1;">
+    <div class="relative text-white overflow-hidden w-full min-h-[500px] md:min-h-[600px] lg:min-h-[680px] max-w-[1440px] mx-auto -mt-20 bg-cover bg-no-repeat" style="background-image: url('/hero-image.png'); background-position: center 75%;">
       <!-- Gradient overlay on top of hero image -->
       <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.3) 26%, rgba(0,0,0,0.5) 49%, rgba(0,0,0,0.7) 70%, rgba(0,0,0,0.8) 95%);" />
       <!-- Left supergraphic -->
-      <div class="absolute left-0 top-0 w-64 h-full opacity-30 pointer-events-none z-20">
+      <div class="absolute left-0 top-0 w-32 md:w-48 lg:w-64 h-full opacity-30 pointer-events-none z-20">
         <img
           src="/supergraphic-left.svg"
           alt=""
@@ -14,7 +14,7 @@
       </div>
 
       <!-- Right supergraphic -->
-      <div class="absolute right-0 top-0 w-96 h-full opacity-30 pointer-events-none z-20">
+      <div class="absolute right-0 top-0 w-48 md:w-72 lg:w-96 h-full opacity-30 pointer-events-none z-20">
         <img
           src="/supergraphic-right.svg"
           alt=""
@@ -23,25 +23,25 @@
       </div>
 
       <!-- Content -->
-      <div class="relative z-30 max-w-6xl mx-auto px-5 pt-96 pb-16">
+      <div class="relative z-30 max-w-6xl mx-auto px-4 md:px-5 pt-40 md:pt-64 lg:pt-96 pb-8 md:pb-16">
         <div class="text-center">
-          <h1 class="mb-6" style="font-family: 'Helvetica Neue', sans-serif; font-weight: 500; font-size: 40px; line-height: 100%; letter-spacing: 0.5%; text-align: center;">
+          <h1 class="mb-4 md:mb-6 text-2xl md:text-3xl lg:text-4xl font-medium" style="font-family: 'Helvetica Neue', sans-serif; letter-spacing: 0.5%; text-align: center; line-height: 1.1;">
             Portal Satu Data Nahdlatul Ulama
           </h1>
-          <p class="mb-8 max-w-3xl mx-auto text-white text-opacity-90" style="font-family: 'Helvetica Neue', sans-serif; font-weight: 400; font-size: 16px; line-height: 100%; letter-spacing: 0.5%; text-align: center;">
+          <p class="mb-6 md:mb-8 max-w-3xl mx-auto text-white text-opacity-90 text-sm md:text-base" style="font-family: 'Helvetica Neue', sans-serif; letter-spacing: 0.5%; text-align: center; line-height: 1.2;">
             Platform terpadu yang mendukung pengelolaan data strategis seluruh ekosistem digital Nahdlatul Ulama
           </p>
 
           <!-- Search Bar -->
-          <div class="flex justify-center mb-6">
-            <div class="relative" style="width: 984px;">
-              <Search class="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-500" />
+          <div class="flex justify-center mb-4 md:mb-6 px-4">
+            <div class="relative w-full max-w-sm md:max-w-lg lg:max-w-3xl">
+              <Search class="absolute left-3 md:left-4 top-1/2 transform -translate-y-1/2 w-4 h-4 md:w-5 md:h-5 text-gray-500" />
               <input
                 v-model="searchQuery"
                 type="text"
                 placeholder="Masukkan Kata Kunci Pencarian"
-                class="border shadow-lg focus:outline-none focus:ring-4 focus:ring-white focus:ring-opacity-30"
-                style="width: 984px; height: 46px; padding-top: 8px; padding-right: 48px; padding-bottom: 8px; padding-left: 48px; border-radius: 999px; border-width: 1px; opacity: 1; font-family: 'Inter', sans-serif; font-weight: 500; font-size: 15px; line-height: 100%; letter-spacing: 0.5%; text-align: center; color: #1f2937;"
+                class="w-full h-10 md:h-12 border shadow-lg focus:outline-none focus:ring-4 focus:ring-white focus:ring-opacity-30 pl-10 md:pl-12 pr-4 md:pr-8 rounded-full text-center text-gray-900 text-sm md:text-base"
+                style="font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.5%;"
               >
             </div>
           </div>
@@ -80,15 +80,15 @@
             class="cursor-pointer overflow-hidden"
             @click="navigateTo(dashboard.href)"
           >
-            <div class="flex flex-col h-full min-h-[300px]">
+            <div class="flex flex-col h-full min-h-[220px]">
               <!-- Card Content - Takes up available space -->
-              <div class="p-6 flex-1">
-                <h3 class="text-lg font-bold text-gray-900 mb-3">{{ dashboard.title }}</h3>
-                <p class="text-gray-600 text-sm leading-relaxed">{{ dashboard.description }}</p>
+              <div class="p-4 pb-2 flex-1">
+                <h3 class="text-base font-bold text-gray-900 mb-2">{{ dashboard.title }}</h3>
+                <p class="text-gray-600 text-xs leading-relaxed">{{ dashboard.description }}</p>
               </div>
 
               <!-- Card Footer - Always at bottom -->
-              <div class="px-6 py-3 text-sm text-gray-500 flex justify-between items-center mt-auto" style="background-color: #E2E8F0;">
+              <div class="px-4 py-2 text-xs text-gray-500 flex justify-between items-center" style="background-color: #E2E8F0;">
                 <span>Update: {{ dashboard.lastUpdate }}</span>
                 <ArrowRight class="w-4 h-4" />
               </div>
