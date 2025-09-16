@@ -1,14 +1,14 @@
 <template>
-  <header class="text-gray-800 py-2 sticky top-0 z-50" :class="isHomePage ? 'bg-transparent text-white' : 'bg-white shadow-sm'">
+  <header class="text-gray-800 py-2 sticky top-0 z-50 transition-all duration-300" :class="headerClasses">
     <div class="max-w-6xl mx-auto px-5">
       <div class="flex items-center justify-between">
         <!-- Logo Section -->
         <div class="flex items-center">
           <div class="logo cursor-pointer" @click="navigateTo('/')">
             <img
-              src="/footerlogo.svg"
+              :src="logoSrc"
               alt="PBNU Dashboard"
-              class="h-10 w-auto"
+              class="h-10 w-auto transition-opacity duration-300"
             >
           </div>
         </div>
@@ -62,6 +62,7 @@ import { ChevronDown } from 'lucide-vue-next'
 
 const route = useRoute()
 const showDropdown = ref(false)
+const scrollY = ref(0)
 
 const dashboardItems = [
   {
@@ -94,10 +95,51 @@ const isHomePage = computed(() => {
   return route?.path === '/'
 })
 
+const isScrolled = computed(() => {
+  return scrollY.value > 100 // Trigger transition after 100px scroll
+})
+
+const headerClasses = computed(() => {
+  if (!isHomePage.value) {
+    // Non-homepage: always solid
+    return 'bg-white shadow-sm text-gray-800'
+  } else {
+    // Homepage: dynamic based on scroll
+    if (isScrolled.value) {
+      return 'bg-white shadow-sm text-gray-800'
+    } else {
+      return 'bg-transparent text-white'
+    }
+  }
+})
+
+const logoSrc = computed(() => {
+  if (isHomePage.value && !isScrolled.value) {
+    // Homepage before scroll: white logo for transparent background
+    return '/footerlogo.svg'
+  } else {
+    // Homepage after scroll OR other pages: dark logo for white background
+    return '/headerlogo.svg'
+  }
+})
+
+// Handle scroll events
+onMounted(() => {
+  const handleScroll = () => {
+    scrollY.value = window.scrollY
+  }
+
+  window.addEventListener('scroll', handleScroll)
+
+  onUnmounted(() => {
+    window.removeEventListener('scroll', handleScroll)
+  })
+})
+
 const navItemClasses = (active?: boolean) => {
-  if (isHomePage.value) {
-    // Homepage styles (transparent header with white text)
-    const baseClasses = 'text-white no-underline py-2 border-b-2 border-transparent transition-colors duration-200'
+  if (isHomePage.value && !isScrolled.value) {
+    // Homepage before scroll: white text on transparent background
+    const baseClasses = 'text-white no-underline py-2 border-b-2 border-transparent transition-colors duration-300'
     const activeClasses = 'text-white border-white'
     const hoverClasses = 'hover:text-white hover:border-white hover:border-opacity-50'
 
@@ -106,8 +148,8 @@ const navItemClasses = (active?: boolean) => {
       active ? activeClasses : hoverClasses
     ].join(' ')
   } else {
-    // Other pages styles (white header with dark text)
-    const baseClasses = 'text-gray-600 no-underline py-2 border-b-2 border-transparent transition-colors duration-200'
+    // Homepage after scroll OR other pages: dark text on white background
+    const baseClasses = 'text-gray-600 no-underline py-2 border-b-2 border-transparent transition-colors duration-300'
     const activeClasses = 'text-[var(--primary-green)] border-[var(--primary-green)]'
     const hoverClasses = 'hover:text-[var(--primary-green)] hover:border-[var(--primary-green)] hover:border-opacity-50'
 
