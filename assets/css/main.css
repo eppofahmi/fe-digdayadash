@@ -51,7 +51,8 @@ body {
   }
   
   .section-header {
-    @apply px-6 py-4 border-b border-gray-200 bg-[#017534] text-white flex items-center gap-4;
+    @apply px-6 py-4 border-b border-gray-200 text-white flex items-center gap-4;
+    background: rgba(17, 94, 89, 1);
   }
   
   .section-header-logo {

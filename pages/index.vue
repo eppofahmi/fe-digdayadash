@@ -79,7 +79,7 @@
     <!-- Content Section -->
     <div class="max-w-6xl mx-auto px-3 sm:px-4 md:px-5 py-8 sm:py-12 md:py-16">
       <!-- Katalog Dasbor Section -->
-      <section class="mb-8 sm:mb-12 md:mb-16">
+      <section id="katalog-dasbor" class="mb-8 sm:mb-12 md:mb-16">
         <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8">Katalog Dasbor</h2>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">

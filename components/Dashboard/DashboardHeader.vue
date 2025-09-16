@@ -24,12 +24,12 @@
         <div class="flex flex-col gap-2">
           <!-- Breadcrumb -->
           <nav class="breadcrumb">
-            <span class="flex items-center gap-1">
+            <NuxtLink to="/" class="flex items-center gap-1 hover:text-white transition-colors cursor-pointer">
               <House class="w-4 h-4" />
               HOME
-            </span>
+            </NuxtLink>
             <span>/</span>
-            <span>Katalog Dasbor</span>
+            <NuxtLink to="/#katalog-dasbor" class="hover:text-white transition-colors cursor-pointer">Katalog Dasbor</NuxtLink>
             <span>/</span>
             <span class="active">Dashboard Progress Implementasi Persuratan PBNU</span>
           </nav>

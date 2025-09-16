@@ -1,16 +1,34 @@
 <template>
   <div class="mb-8">
-    <!-- Action Buttons - Top Right -->
-    <div class="flex justify-end mb-4">
+    <!-- Action Buttons - Left: Back, Right: Share & Link -->
+    <div class="flex justify-between items-center mb-4">
+      <!-- Back Button - Left -->
+      <button
+        @click="$router.push('/')"
+        class="flex items-center gap-2 text-gray-600 hover:text-[var(--primary-green)] transition-colors duration-200"
+      >
+        <ArrowLeft class="w-4 h-4" />
+        <span class="text-sm font-medium">Kembali</span>
+      </button>
+
+      <!-- Share & Link Buttons - Right -->
       <div class="flex gap-3">
-        <BaseButton variant="primary" size="sm" @click="showShareModal = true">
-          <Share2 class="w-4 h-4 mr-1" />
+        <button
+          @click="showShareModal = true"
+          class="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 hover:text-[var(--primary-green)] transition-colors duration-200 border border-gray-300 rounded-md"
+          style="background: rgba(255, 255, 255, 1);"
+        >
+          <Share2 class="w-4 h-4" />
           Share
-        </BaseButton>
-        <BaseButton variant="primary" size="sm" @click="handleCopyLink">
-          <Link class="w-4 h-4 mr-1" />
+        </button>
+        <button
+          @click="handleCopyLink"
+          class="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 hover:text-[var(--primary-green)] transition-colors duration-200 border border-gray-300 rounded-md"
+          style="background: rgba(255, 255, 255, 1);"
+        >
+          <Link class="w-4 h-4" />
           Link
-        </BaseButton>
+        </button>
       </div>
     </div>
     
@@ -49,15 +67,16 @@
 </template>
 
 <script setup lang="ts">
-import { 
-  MailCheck, 
-  Users, 
-  Send, 
-  MailPlus, 
-  BookMarked, 
+import {
+  MailCheck,
+  Users,
+  Send,
+  MailPlus,
+  BookMarked,
   StickyNote,
   Share2,
-  Link
+  Link,
+  ArrowLeft
 } from 'lucide-vue-next'
 import type { Component } from 'vue'
 
