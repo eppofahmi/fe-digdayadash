@@ -18,7 +18,7 @@
     </div>
     
     <!-- Main content -->
-    <div class="p-6">
+    <div :class="props.padding ? 'p-6' : 'p-0'">
       <slot />
     </div>
     
