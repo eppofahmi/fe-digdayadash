@@ -111,31 +111,24 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <!-- DIGDAYA Cards -->
-          <BaseCard
+          <!-- DIGDAYA Items -->
+          <div
             v-for="digdaya in digdayaApps"
             :key="digdaya.name"
-            :hoverable="true"
-            class="text-center cursor-pointer"
+            class="text-center cursor-pointer p-4 rounded-xl hover:bg-gray-50 transition-colors duration-200"
           >
-            <div class="p-6">
-              <!-- Logo -->
-              <div class="w-20 h-20 mx-auto mb-6 bg-white rounded-xl shadow-md flex items-center justify-center">
-                <img
-                  src="/headerlogo.svg"
-                  alt="PBNU Logo"
-                  class="h-12 w-auto"
-                >
-              </div>
-
-              <!-- Text Content -->
-              <div>
-                <h3 class="font-bold text-gray-900 mb-2">{{ digdaya.name }}</h3>
-                <p class="text-sm text-gray-600 mb-3">{{ digdaya.subtitle }}</p>
-                <p class="text-xs text-gray-500">{{ digdaya.description }}</p>
-              </div>
+            <!-- Logo -->
+            <div class="w-32 h-32 mx-auto">
+              <img
+                :src="digdaya.logo"
+                :alt="digdaya.name"
+                class="w-full h-full object-contain"
+              >
             </div>
-          </BaseCard>
+
+            <!-- Text Content -->
+            <p class="text-sm text-gray-700 font-medium px-2 -mt-4">{{ digdaya.description }}</p>
+          </div>
         </div>
       </section>
 
@@ -242,25 +235,29 @@ const digdayaApps = [
     name: 'DIGDAYA Persuratan',
     subtitle: 'Digdaya Persuratan',
     description: 'Sistem Manajemen Surat dan Tanda Tangan Digital',
-    icon: Mail
+    icon: Mail,
+    logo: '/logo-persuratan.svg'
   },
   {
     name: 'DIGDAYA Kepengurusan',
     subtitle: 'Digdaya Kepengurusan',
     description: 'Sistem Manajemen Pengurus dan Agenda',
-    icon: Users
+    icon: Users,
+    logo: '/logo-kepengurusan.svg'
   },
   {
     name: 'DIGDAYA Kader',
     subtitle: 'Digdaya Kader',
     description: 'Sistem Tata Kelola Kaderisasi',
-    icon: UserCheck
+    icon: UserCheck,
+    logo: '/logo-kader.png'
   },
   {
     name: 'DIGDAYA Pesantren',
     subtitle: 'Digdaya Pesantren',
     description: 'Sistem Manajemen Pesantren',
-    icon: School
+    icon: School,
+    logo: '/logo-pesantren.svg'
   }
 ]
 </script>
