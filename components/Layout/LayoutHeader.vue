@@ -47,7 +47,7 @@
           <!-- Tentang -->
           <NuxtLink
             to="/tentang"
-            :class="navItemClasses(route.path === '/tentang')"
+            :class="navItemClasses(route?.path === '/tentang')"
           >
             Tentang
           </NuxtLink>
@@ -87,7 +87,7 @@ const dashboardItems = [
 ]
 
 const isDashboardActive = computed(() => {
-  return dashboardItems.some(item => route.path === item.href)
+  return dashboardItems.some(item => route?.path === item.href)
 })
 
 const navItemClasses = (active?: boolean) => {

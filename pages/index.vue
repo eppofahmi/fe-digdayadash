@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Hero Section -->
-    <div class="relative min-h-[70vh] text-white overflow-hidden" style="background-image: url('/hero-image.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+    <div class="relative text-white overflow-hidden" style="width: 1440px; height: 600px; margin: 0 auto; background-image: url('/hero-image.png'); background-size: cover; background-position: center 75%; background-repeat: no-repeat; opacity: 1;">
       <!-- Gradient overlay on top of hero image -->
       <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.3) 26%, rgba(0,0,0,0.5) 49%, rgba(0,0,0,0.7) 70%, rgba(0,0,0,0.8) 95%);"></div>
       <!-- Left supergraphic -->
@@ -23,33 +23,41 @@
       </div>
 
       <!-- Content -->
-      <div class="relative z-30 max-w-6xl mx-auto px-5 pt-20 pb-16">
+      <div class="relative z-30 max-w-6xl mx-auto px-5 pt-80 pb-16">
         <div class="text-center">
-          <h1 class="text-5xl font-bold mb-6">
+          <h1 class="mb-6" style="font-family: 'Helvetica Neue', sans-serif; font-weight: 500; font-size: 40px; line-height: 100%; letter-spacing: 0.5%; text-align: center;">
             Portal Satu Data Nahdlatul Ulama
           </h1>
-          <p class="text-xl text-white text-opacity-90 mb-8 max-w-3xl mx-auto">
+          <p class="mb-8 max-w-3xl mx-auto text-white text-opacity-90" style="font-family: 'Helvetica Neue', sans-serif; font-weight: 400; font-size: 16px; line-height: 100%; letter-spacing: 0.5%; text-align: center;">
             Platform terpadu yang mendukung pengelolaan data strategis seluruh ekosistem digital Nahdlatul Ulama
           </p>
 
-          <div class="mb-8">
-            <BaseButton variant="primary" size="lg" class="bg-white text-[var(--primary-green)] hover:bg-gray-100">
-              Pelajari Selengkapnya
-            </BaseButton>
-          </div>
-
           <!-- Search Bar -->
-          <div class="max-w-2xl mx-auto">
-            <div class="relative">
+          <div class="flex justify-center mb-6">
+            <div class="relative" style="width: 984px;">
+              <Search class="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-500" />
               <input
                 v-model="searchQuery"
                 type="text"
                 placeholder="Masukkan Kata Kunci Pencarian"
-                class="w-full px-6 py-4 rounded-full text-gray-900 placeholder-gray-500 text-lg border-0 shadow-lg focus:outline-none focus:ring-4 focus:ring-white focus:ring-opacity-30"
+                class="border shadow-lg focus:outline-none focus:ring-4 focus:ring-white focus:ring-opacity-30"
+                style="width: 984px; height: 46px; padding-top: 8px; padding-right: 48px; padding-bottom: 8px; padding-left: 48px; border-radius: 999px; border-width: 1px; opacity: 1; font-family: 'Inter', sans-serif; font-weight: 500; font-size: 15px; line-height: 100%; letter-spacing: 0.5%; text-align: center; color: #1f2937;"
               >
-              <button class="absolute right-2 top-2 p-2 bg-[var(--primary-green)] text-white rounded-full hover:bg-[var(--primary-green-hover)] transition-colors">
-                <Search class="w-5 h-5" />
-              </button>
+            </div>
+          </div>
+
+          <!-- Learn More Text -->
+          <p class="text-white text-opacity-80 mb-2">
+            Pelajari Selengkapnya
+          </p>
+
+          <!-- Scroll Indicator -->
+          <div class="flex flex-col items-center cursor-pointer mb-1" @click="scrollToBottom">
+            <div class="border border-white border-opacity-60 flex flex-col items-center justify-center relative" style="width: 20px; height: 32px; padding-top: 8px; padding-right: 2px; padding-bottom: 8px; padding-left: 2px; border-radius: 400px; border-width: 1px; opacity: 1;">
+              <div class="w-1 h-2 bg-white bg-opacity-60 rounded-full animate-bounce"></div>
+              <svg class="w-3 h-3 text-white text-opacity-60 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+              </svg>
             </div>
           </div>
         </div>
@@ -213,6 +221,14 @@ useHead({
 
 // State
 const searchQuery = ref('')
+
+// Functions
+const scrollToBottom = () => {
+  window.scrollTo({
+    top: document.body.scrollHeight,
+    behavior: 'smooth'
+  })
+}
 
 // Data
 const dashboards = [
