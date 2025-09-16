@@ -101,11 +101,11 @@
       <section class="mb-16">
         <h2 class="text-3xl font-bold text-gray-900 mb-8">Topik Katalog Data</h2>
 
-        <div class="flex flex-wrap gap-4">
+        <div class="flex flex-wrap gap-2">
           <div
             v-for="topic in topicsWithIcons"
             :key="topic.name"
-            class="flex items-center gap-3 p-4 h-14 border-2 border-gray-400 rounded-lg bg-transparent hover:bg-[var(--primary-green)] hover:text-white hover:border-[var(--primary-green)] cursor-pointer transition-all duration-200 group"
+            class="flex items-center gap-2 px-3 py-2 h-10 border-2 border-gray-400 rounded-lg bg-transparent hover:bg-[var(--primary-green)] hover:text-white hover:border-[var(--primary-green)] cursor-pointer transition-all duration-200 group"
           >
             <component :is="topic.icon" class="w-5 h-5 text-[var(--primary-green)] group-hover:text-white flex-shrink-0" />
             <span class="text-sm font-medium whitespace-nowrap">{{ topic.name }}</span>
@@ -123,14 +123,14 @@
         <!-- Swiper Container -->
         <div class="relative">
           <Swiper
-            :modules="[Navigation]"
-            :slides-per-view="1.2"
-            :space-between="5"
-            :navigation="true"
+            :modules="[]"
+            :slides-per-view="2"
+            :space-between="2"
+            :navigation="false"
             :centered-slides="true"
             :breakpoints="{
-              640: { slidesPerView: 1.5, spaceBetween: 5, centeredSlides: true },
-              1024: { slidesPerView: 2.5, spaceBetween: 5, centeredSlides: true }
+              640: { slidesPerView: 2.5, spaceBetween: 2, centeredSlides: true },
+              1024: { slidesPerView: 3.5, spaceBetween: 2, centeredSlides: true }
             }"
             class="ekosistem-swiper"
           >
@@ -197,16 +197,14 @@ import {
   Home,
   Palette,
   Scale,
-  DollarSign,
-  TreePine,
+  HandHeart,
+  TreePalm,
   HelpCircle
 } from 'lucide-vue-next'
 
 // Swiper imports
 import { Swiper, SwiperSlide } from 'swiper/vue'
-import { Navigation } from 'swiper/modules'
 import 'swiper/css'
-import 'swiper/css/navigation'
 
 // Page metadata
 useHead({
@@ -271,8 +269,8 @@ const topicsWithIcons = [
   { name: 'Keluarga Maslahat', icon: Home },
   { name: 'Seni dan Budaya', icon: Palette },
   { name: 'Hukum', icon: Scale },
-  { name: 'ZISWAF', icon: DollarSign },
-  { name: 'Wakaf dan Tanah', icon: TreePine },
+  { name: 'ZISWAF', icon: HandHeart },
+  { name: 'Wakaf dan Tanah', icon: TreePalm },
   { name: 'Layanan Lain', icon: HelpCircle }
 ]
 
