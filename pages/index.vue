@@ -133,18 +133,19 @@
         </div>
 
         <!-- Swiper Container -->
-        <div class="relative">
+        <div class="relative overflow-hidden">
           <Swiper
             :modules="[]"
-            :slides-per-view="2"
-            :space-between="2"
+            :slides-per-view="3.2"
+            :space-between="8"
             :navigation="false"
             :centered-slides="true"
+            :initial-slide="1"
             :breakpoints="{
-              640: { slidesPerView: 2.5, spaceBetween: 2, centeredSlides: true },
-              1024: { slidesPerView: 3.5, spaceBetween: 2, centeredSlides: true }
+              640: { slidesPerView: 3.4, spaceBetween: 12, centeredSlides: true },
+              1024: { slidesPerView: 3.6, spaceBetween: 16, centeredSlides: true }
             }"
-            class="ekosistem-swiper"
+            class="ekosistem-swiper px-2"
           >
             <SwiperSlide
               v-for="digdaya in digdayaApps"
