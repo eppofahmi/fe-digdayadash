@@ -20,7 +20,7 @@
       </p>
 
       <!-- Back Button -->
-      <BaseButton @click="navigateTo('/')" variant="primary">
+      <BaseButton variant="primary" @click="navigateTo('/')">
         Kembali ke Beranda
       </BaseButton>
     </div>

@@ -35,7 +35,7 @@
       </div>
 
       <!-- Content -->
-      <div class="relative z-30 max-w-6xl mx-auto px-4 sm:px-5 pt-24 sm:pt-40 md:pt-64 lg:pt-96 pb-6 sm:pb-8 md:pb-16">
+      <div class="relative z-30 max-w-6xl mx-auto px-4 sm:px-5 pt-32 sm:pt-48 md:pt-72 lg:pt-[420px] pb-6 sm:pb-8 md:pb-16">
         <div class="text-center">
           <h1 class="mb-3 sm:mb-4 md:mb-6 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-medium" style="font-family: 'Helvetica Neue', sans-serif; letter-spacing: 0.5%; text-align: center; line-height: 1.1;">
             Portal Satu Data Nahdlatul Ulama
@@ -52,7 +52,7 @@
                 v-model="searchQuery"
                 type="text"
                 placeholder="Masukkan Kata Kunci Pencarian"
-                class="w-full h-8 sm:h-10 md:h-12 border shadow-lg focus:outline-none focus:ring-4 focus:ring-white focus:ring-opacity-30 pl-8 sm:pl-10 md:pl-12 pr-3 sm:pr-4 md:pr-8 rounded-full text-center text-gray-900 text-xs sm:text-sm md:text-base"
+                class="w-full h-8 sm:h-10 md:h-12 border shadow-lg focus:outline-none focus:ring-4 focus:ring-white focus:ring-opacity-30 pl-8 sm:pl-10 md:pl-12 pr-3 sm:pr-4 md:pr-8 rounded-full text-left text-gray-900 text-xs sm:text-sm md:text-base"
                 style="font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.5%;"
               >
             </div>
@@ -92,15 +92,15 @@
             class="cursor-pointer overflow-hidden"
             @click="navigateTo(dashboard.href)"
           >
-            <div class="flex flex-col h-full min-h-[160px] sm:min-h-[180px] md:min-h-[200px]">
+            <div class="flex flex-col h-full min-h-[140px] sm:min-h-[150px]">
               <!-- Card Content - Takes up available space -->
               <div class="p-2 sm:p-3 pb-1 flex-1">
                 <h3 class="text-sm sm:text-base font-bold text-gray-900 mb-1 leading-tight">{{ dashboard.title }}</h3>
-                <p class="text-gray-600 text-xs leading-relaxed line-clamp-3">{{ dashboard.description }}</p>
+                <p class="text-gray-600 text-xs leading-relaxed line-clamp-4">{{ dashboard.description }}</p>
               </div>
 
-              <!-- Card Footer - Always at bottom -->
-              <div class="px-3 sm:px-4 py-2 text-xs text-gray-500 flex justify-between items-center" style="background-color: #E2E8F0;">
+              <!-- Card Footer - Static at bottom -->
+              <div class="px-3 sm:px-4 py-2 text-xs text-gray-500 flex justify-between items-center mt-auto" style="background-color: #E2E8F0;">
                 <span>Update: {{ dashboard.lastUpdate }}</span>
                 <ArrowRight class="w-3 h-3 sm:w-4 sm:h-4" />
               </div>
@@ -174,8 +174,9 @@
 
       <!-- SATUDATA Access Section -->
       <section>
-        <div class="rounded-3xl p-4 sm:p-6 md:p-8 text-white relative overflow-hidden"
-             style="
+        <div
+          class="rounded-3xl p-4 sm:p-6 md:p-8 text-white relative overflow-hidden"
+          style="
                background:
                  linear-gradient(90deg, #134E4A 45.35%, rgba(0, 0, 0, 0) 100%),
                  url('/section-satudata.png') center / cover no-repeat,

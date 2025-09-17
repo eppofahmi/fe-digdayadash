@@ -4,8 +4,8 @@
     <div class="flex justify-between items-center mb-4">
       <!-- Back Button - Left -->
       <button
-        @click="$router.push('/')"
         class="flex items-center gap-2 text-gray-600 hover:text-[var(--primary-green)] transition-colors duration-200"
+        @click="$router.push('/')"
       >
         <ArrowLeft class="w-4 h-4" />
         <span class="text-sm font-medium">Kembali</span>
@@ -14,17 +14,17 @@
       <!-- Share & Link Buttons - Right -->
       <div class="flex gap-3">
         <button
-          @click="showShareModal = true"
           class="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 hover:text-[var(--primary-green)] transition-colors duration-200 border border-gray-300 rounded-md"
           style="background: rgba(255, 255, 255, 1);"
+          @click="showShareModal = true"
         >
           <Share2 class="w-4 h-4" />
           Share
         </button>
         <button
-          @click="handleCopyLink"
           class="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 hover:text-[var(--primary-green)] transition-colors duration-200 border border-gray-300 rounded-md"
           style="background: rgba(255, 255, 255, 1);"
+          @click="handleCopyLink"
         >
           <Link class="w-4 h-4" />
           Link
@@ -112,9 +112,9 @@ const statistics: StatisticCard[] = [
   },
   {
     icon: Send,
-    label: 'Surat Terkirim',
+    label: 'Surat Keluar',
     value: '12,450',
-    description: 'surat terkirim'
+    description: 'surat keluar'
   },
   {
     icon: MailPlus,

@@ -54,14 +54,18 @@
               </td>
               <td class="px-4 py-4 text-sm border-b border-gray-200">{{ item.kepengurusan }}</td>
               <td class="px-4 py-4 text-sm border-b border-gray-200">
-                <div class="flex items-center gap-2">
-                  <div class="flex-1 h-1.5 bg-gray-200 rounded-full overflow-hidden">
-                    <div 
-                      class="h-full bg-emerald-500 rounded-full transition-all duration-300"
+                <div class="flex flex-col gap-1">
+                  <span
+                    class="text-left align-middle"
+                    style="font-family: Inter; font-weight: 400; font-size: 14px; line-height: 20px; letter-spacing: 0.5%;"
+                  >{{ item.aktivasi }}</span>
+                  <div class="w-full h-1.5 rounded-full overflow-hidden" style="background: rgba(243, 244, 246, 1);">
+                    <div
+                      class="h-full rounded-full transition-all duration-300"
+                      style="background: rgba(21, 128, 61, 1);"
                       :style="{ width: `${item.percentage}%` }"
                     />
                   </div>
-                  <span class="font-medium min-w-[50px]">{{ item.aktivasi }}</span>
                 </div>
               </td>
               <td class="px-4 py-4 text-sm border-b border-gray-200">

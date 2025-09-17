@@ -18,7 +18,7 @@
     </div>
     
     <!-- Main content -->
-    <div :class="props.padding ? 'p-6' : 'p-0'">
+    <div :class="[props.padding ? 'p-6' : 'p-0', 'flex-1 flex flex-col']">
       <slot />
     </div>
     
@@ -47,10 +47,10 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const cardClasses = computed(() => {
-  const baseClasses = 'card'
+  const baseClasses = 'card flex flex-col h-full'
   const hoverClasses = props.hoverable ? 'hover:-translate-y-0.5 hover:shadow-lg' : ''
   const borderClasses = props.bordered ? 'border border-gray-200' : 'border-0'
-  
+
   return [baseClasses, hoverClasses, borderClasses].filter(Boolean).join(' ')
 })
 </script>

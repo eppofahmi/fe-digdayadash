@@ -1,20 +1,11 @@
 <template>
-  <div class="relative text-white p-8 rounded-xl mb-8 overflow-hidden" style="background: linear-gradient(94.9deg, #32A651 4%, #067936 121.37%)">
-    <!-- Left supergraphic -->
-    <div class="absolute left-0 top-0 w-64 h-full opacity-30 pointer-events-none">
-      <img 
-        src="/supergraphic-left.svg" 
-        alt="" 
-        class="h-full w-full object-contain object-left"
-      >
-    </div>
-    
-    <!-- Right supergraphic -->
-    <div class="absolute right-0 top-0 w-96 h-full opacity-30 pointer-events-none">
-      <img 
-        src="/supergraphic-right.svg" 
-        alt="" 
-        class="h-full w-full object-contain object-right"
+  <div class="relative text-white p-8 rounded-xl mb-8 overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0">
+      <img
+        src="/dash-header.png"
+        alt="Dashboard Header Background"
+        class="w-full h-full object-cover"
       >
     </div>
     
