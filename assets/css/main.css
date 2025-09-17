@@ -27,19 +27,24 @@ body {
 /* Custom Component Classes */
 @layer components {
   .btn-primary {
-    @apply bg-[var(--primary-green)] text-white border-none px-4 py-2 rounded-md font-semibold cursor-pointer transition-colors duration-200;
+    @apply text-white px-4 py-2 rounded-md font-semibold cursor-pointer transition-colors duration-200;
+    background: #017534;
+    border: 1px solid #017534;
   }
-  
+
   .btn-primary:hover {
     @apply bg-[var(--primary-green-hover)];
   }
-  
+
   .btn-secondary {
-    @apply bg-[var(--primary-green)] text-white border-none px-4 py-2 rounded-md font-medium cursor-pointer transition-colors duration-200;
+    @apply px-4 py-2 rounded-md font-medium cursor-pointer transition-colors duration-200;
+    background: rgba(255, 255, 255, 1);
+    border: 1px solid #e5e7eb;
+    color: rgba(250, 79, 71, 1);
   }
-  
+
   .btn-secondary:hover {
-    @apply bg-[var(--primary-green-hover)];
+    background: rgba(248, 248, 248, 1);
   }
   
   .card {
@@ -51,7 +56,8 @@ body {
   }
   
   .section-header {
-    @apply px-6 py-4 border-b border-gray-200 bg-[#017534] text-white flex items-center gap-4;
+    @apply px-6 py-4 border-b border-gray-200 text-white flex items-center gap-4;
+    background: rgba(17, 94, 89, 1);
   }
   
   .section-header-logo {

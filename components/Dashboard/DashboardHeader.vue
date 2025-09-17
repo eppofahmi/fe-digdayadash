@@ -1,20 +1,11 @@
 <template>
-  <div class="relative text-white p-8 rounded-xl mb-8 overflow-hidden" style="background: linear-gradient(to bottom right, #32A651, #067936)">
-    <!-- Left supergraphic -->
-    <div class="absolute left-0 top-0 w-64 h-full opacity-30 pointer-events-none">
-      <img 
-        src="/supergraphic-left.svg" 
-        alt="" 
-        class="h-full w-full object-contain object-left"
-      >
-    </div>
-    
-    <!-- Right supergraphic -->
-    <div class="absolute right-0 top-0 w-96 h-full opacity-30 pointer-events-none">
-      <img 
-        src="/supergraphic-right.svg" 
-        alt="" 
-        class="h-full w-full object-contain object-right"
+  <div class="relative text-white p-8 rounded-xl mb-8 overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0">
+      <img
+        src="/dash-header.png"
+        alt="Dashboard Header Background"
+        class="w-full h-full object-cover"
       >
     </div>
     
@@ -24,12 +15,12 @@
         <div class="flex flex-col gap-2">
           <!-- Breadcrumb -->
           <nav class="breadcrumb">
-            <span class="flex items-center gap-1">
+            <NuxtLink to="/" class="flex items-center gap-1 hover:text-white transition-colors cursor-pointer">
               <House class="w-4 h-4" />
               HOME
-            </span>
+            </NuxtLink>
             <span>/</span>
-            <span>Katalog Dasbor</span>
+            <NuxtLink to="/#katalog-dasbor" class="hover:text-white transition-colors cursor-pointer">Katalog Dasbor</NuxtLink>
             <span>/</span>
             <span class="active">Dashboard Progress Implementasi Persuratan PBNU</span>
           </nav>
