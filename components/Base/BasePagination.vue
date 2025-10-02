@@ -1,19 +1,22 @@
 <template>
-  <div class="flex items-center justify-between px-6 py-4 border-t border-gray-200 bg-gray-50">
+  <div class="flex items-center justify-between px-3 sm:px-6 py-3 sm:py-4 border-t border-gray-200 bg-gray-50">
     <!-- Per page selector and Results info -->
-    <div class="flex items-center gap-4">
+    <div class="flex items-center gap-2 sm:gap-4">
       <select
         :value="props.perPage"
-        class="w-[60px] px-2 py-1 border border-gray-300 rounded bg-white text-gray-900"
+        class="w-[50px] sm:w-[60px] px-1 sm:px-2 py-1 text-xs sm:text-sm border border-gray-300 rounded bg-white text-gray-900"
         @change="handlePerPageChange(($event.target as HTMLSelectElement).value)"
       >
         <option value="10">10</option>
         <option value="25">25</option>
         <option value="50">50</option>
       </select>
-      
-      <div class="text-sm text-gray-700">
-        Showing {{ startItem }}-{{ endItem }} of {{ total }}
+
+      <div class="text-xs sm:text-sm text-gray-700">
+        <!-- Mobile: abbreviated format -->
+        <span class="sm:hidden">{{ startItem }}-{{ endItem }} / {{ total }}</span>
+        <!-- Desktop: full format -->
+        <span class="hidden sm:inline">Showing {{ startItem }}-{{ endItem }} of {{ total }}</span>
       </div>
     </div>
     

@@ -7,8 +7,35 @@
           <ChartSpline class="w-5 h-5 sm:w-6 sm:h-6" />
         </div>
         <div class="flex-1">
-          <h2 class="text-sm sm:text-base font-semibold mb-1 text-white">Tren Surat Keluar</h2>
-          <p class="text-[11px] sm:text-xs text-white text-opacity-90 leading-tight">
+          <div class="flex items-start gap-2">
+            <h2 class="text-sm sm:text-base font-semibold text-white flex-1">
+              Tren Surat Keluar
+            </h2>
+            <!-- Info icon - Mobile only -->
+            <button
+              class="sm:hidden flex-shrink-0 w-5 h-5 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors"
+              @click="showDescription = !showDescription"
+            >
+              <Info class="w-3 h-3 text-white" />
+            </button>
+          </div>
+
+          <!-- Mobile: Collapsible description -->
+          <Transition
+            enter-active-class="transition-all duration-200 ease-out"
+            enter-from-class="opacity-0 max-h-0"
+            enter-to-class="opacity-100 max-h-20"
+            leave-active-class="transition-all duration-200 ease-in"
+            leave-from-class="opacity-100 max-h-20"
+            leave-to-class="opacity-0 max-h-0"
+          >
+            <p v-show="showDescription" class="sm:hidden text-[11px] text-white text-opacity-90 leading-tight mt-1 overflow-hidden">
+              Dashboard Statistik Surat per Kepengurusan memberikan gambaran tentang pengelolaan surat.
+            </p>
+          </Transition>
+
+          <!-- Desktop: Always visible description -->
+          <p class="hidden sm:block text-xs text-white text-opacity-90 leading-tight mt-1">
             Dashboard Statistik Surat per Kepengurusan memberikan gambaran tentang pengelolaan surat.
           </p>
         </div>
@@ -85,7 +112,7 @@
 </template>
 
 <script setup lang="ts">
-import { ChartSpline } from 'lucide-vue-next'
+import { ChartSpline, Info } from 'lucide-vue-next'
 import type { ECharts, EChartsOption } from 'echarts'
 
 interface TimeOption {
@@ -97,6 +124,7 @@ const selectedTimeRange = ref<'daily' | 'weekly' | 'monthly'>('daily')
 const dateFrom = ref('')
 const dateTo = ref('')
 const loading = ref(false)
+const showDescription = ref(false)
 
 const timeOptions: TimeOption[] = [
   { label: 'Harian', value: 'daily' },

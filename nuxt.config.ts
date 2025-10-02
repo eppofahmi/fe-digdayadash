@@ -18,16 +18,17 @@ export default defineNuxtConfig({
   // App configuration
   app: {
     head: {
-      title: 'Dashboard Implementasi Persuratan NU',
+      title: 'Digdaya Dashboard PBNU',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { 
-          name: 'description', 
-          content: 'Monitoring dan evaluasi implementasi sistem persuratan digital di seluruh kepengurusan NU' 
+        {
+          name: 'description',
+          content: 'Monitoring dan evaluasi implementasi sistem persuratan digital di seluruh kepengurusan NU'
         }
       ],
       link: [
+        { rel: 'icon', type: 'image/png', href: '/favicon.png' },
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
       ]
     }
