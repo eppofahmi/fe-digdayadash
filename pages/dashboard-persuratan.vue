@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="max-w-6xl mx-auto px-5">
+    <div class="max-w-6xl mx-auto px-3 sm:px-5">
       <!-- Dashboard Header -->
       <DashboardHeader />
 
@@ -8,17 +8,17 @@
       <DashboardStats />
 
       <!-- Activation Table -->
-      <div class="mb-8">
+      <div class="mb-6 sm:mb-8">
         <DashboardActivationTable />
       </div>
 
       <!-- Statistics Table -->
-      <div class="mb-8">
+      <div class="mb-6 sm:mb-8">
         <DashboardStatisticsTable />
       </div>
 
       <!-- Trend Chart -->
-      <div class="mb-8">
+      <div class="mb-6 sm:mb-8">
         <DashboardTrendChart />
       </div>
     </div>

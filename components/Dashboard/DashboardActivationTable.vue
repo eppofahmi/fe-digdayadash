@@ -4,36 +4,46 @@
     <template #header>
       <div class="section-header">
         <div class="section-header-logo">
-          <UserCheck class="w-6 h-6" />
+          <UserCheck class="w-5 h-5 sm:w-6 sm:h-6" />
         </div>
         <div class="flex-1">
-          <h2 class="text-base font-semibold mb-1 text-white">Detail Aktivasi Akun per Kepengurusan</h2>
-          <p class="text-xs text-white text-opacity-90 leading-tight">
+          <h2 class="text-sm sm:text-base font-semibold mb-1 text-white">Detail Aktivasi Akun per Kepengurusan</h2>
+          <p class="text-[11px] sm:text-xs text-white text-opacity-90 leading-tight">
             Detail Aktivasi Akun untuk setiap kepengurusan memastikan bahwa semua anggota dapat mengakses informasi dan layanan yang diperlukan dengan mudah.
           </p>
         </div>
       </div>
     </template>
-    
+
     <!-- Filters -->
-    <DashboardFilters 
+    <DashboardFilters
       :show-status-filter="true"
       @filter-change="handleFilterChange"
       @filter-reset="handleFilterReset"
     />
-    
+
     <!-- Table -->
-    <div class="mx-3 mb-3 bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+    <div class="mx-2 sm:mx-3 mb-3 bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+      <!-- Mobile: Scroll hint -->
+      <div class="sm:hidden px-3 py-2 bg-blue-50 border-b border-blue-100">
+        <p class="text-xs text-blue-700 flex items-center gap-1">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+          </svg>
+          Geser ke kiri/kanan untuk melihat semua kolom
+        </p>
+      </div>
+
       <div class="overflow-x-auto">
-        <table class="w-full">
+        <table class="w-full min-w-[640px]">
           <thead>
             <tr class="bg-gray-50">
-              <th class="px-4 py-4 text-left text-sm font-semibold text-gray-700 border-b border-gray-200">Ranking</th>
-              <th class="px-4 py-4 text-left text-sm font-semibold text-gray-700 border-b border-gray-200">Nama</th>
-              <th class="px-4 py-4 text-left text-sm font-semibold text-gray-700 border-b border-gray-200">Tingkat</th>
-              <th class="px-4 py-4 text-left text-sm font-semibold text-gray-700 border-b border-gray-200">Kepengurusan</th>
-              <th class="px-4 py-4 text-left text-sm font-semibold text-gray-700 border-b border-gray-200">Aktivasi</th>
-              <th class="px-4 py-4 text-left text-sm font-semibold text-gray-700 border-b border-gray-200">Status</th>
+              <th class="px-2 sm:px-4 py-2 sm:py-4 text-left text-xs sm:text-sm font-semibold text-gray-700 border-b border-gray-200">Ranking</th>
+              <th class="px-2 sm:px-4 py-2 sm:py-4 text-left text-xs sm:text-sm font-semibold text-gray-700 border-b border-gray-200">Nama</th>
+              <th class="px-2 sm:px-4 py-2 sm:py-4 text-left text-xs sm:text-sm font-semibold text-gray-700 border-b border-gray-200">Tingkat</th>
+              <th class="px-2 sm:px-4 py-2 sm:py-4 text-left text-xs sm:text-sm font-semibold text-gray-700 border-b border-gray-200">Kepengurusan</th>
+              <th class="px-2 sm:px-4 py-2 sm:py-4 text-left text-xs sm:text-sm font-semibold text-gray-700 border-b border-gray-200">Aktivasi</th>
+              <th class="px-2 sm:px-4 py-2 sm:py-4 text-left text-xs sm:text-sm font-semibold text-gray-700 border-b border-gray-200">Status</th>
             </tr>
           </thead>
           <tbody>
@@ -42,22 +52,21 @@
               :key="item.ranking"
               class="hover:bg-gray-50 transition-colors duration-200"
             >
-              <td class="px-4 py-4 text-sm border-b border-gray-200">{{ item.ranking }}</td>
-              <td class="px-4 py-4 text-sm border-b border-gray-200">{{ item.nama }}</td>
-              <td class="px-4 py-4 text-sm border-b border-gray-200">
-                <span 
+              <td class="px-2 sm:px-4 py-2 sm:py-4 text-xs sm:text-sm border-b border-gray-200">{{ item.ranking }}</td>
+              <td class="px-2 sm:px-4 py-2 sm:py-4 text-xs sm:text-sm border-b border-gray-200 whitespace-nowrap">{{ item.nama }}</td>
+              <td class="px-2 sm:px-4 py-2 sm:py-4 text-xs sm:text-sm border-b border-gray-200">
+                <span
                   :class="getTingkatBadgeClass(item.tingkat)"
-                  class="inline-block px-3 py-1 rounded-full text-xs font-medium"
+                  class="inline-block px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-medium whitespace-nowrap"
                 >
                   {{ item.tingkat }}
                 </span>
               </td>
-              <td class="px-4 py-4 text-sm border-b border-gray-200">{{ item.kepengurusan }}</td>
-              <td class="px-4 py-4 text-sm border-b border-gray-200">
-                <div class="flex flex-col gap-1">
+              <td class="px-2 sm:px-4 py-2 sm:py-4 text-xs sm:text-sm border-b border-gray-200 whitespace-nowrap">{{ item.kepengurusan }}</td>
+              <td class="px-2 sm:px-4 py-2 sm:py-4 text-xs sm:text-sm border-b border-gray-200">
+                <div class="flex flex-col gap-1 min-w-[100px]">
                   <span
-                    class="text-left align-middle"
-                    style="font-family: Inter; font-weight: 400; font-size: 14px; line-height: 20px; letter-spacing: 0.5%;"
+                    class="text-left align-middle text-xs sm:text-sm"
                   >{{ item.aktivasi }}</span>
                   <div class="w-full h-1.5 rounded-full overflow-hidden" style="background: rgba(243, 244, 246, 1);">
                     <div
@@ -68,7 +77,7 @@
                   </div>
                 </div>
               </td>
-              <td class="px-4 py-4 text-sm border-b border-gray-200">
+              <td class="px-2 sm:px-4 py-2 sm:py-4 text-xs sm:text-sm border-b border-gray-200">
                 <span :class="getStatusBadgeClass(item.status)">
                   {{ item.status }}
                 </span>

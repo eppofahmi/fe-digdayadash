@@ -4,21 +4,21 @@
     <template #header>
       <div class="section-header">
         <div class="section-header-logo">
-          <ChartSpline class="w-6 h-6" />
+          <ChartSpline class="w-5 h-5 sm:w-6 sm:h-6" />
         </div>
         <div class="flex-1">
-          <h2 class="text-base font-semibold mb-1 text-white">Tren Surat Keluar</h2>
-          <p class="text-xs text-white text-opacity-90 leading-tight">
+          <h2 class="text-sm sm:text-base font-semibold mb-1 text-white">Tren Surat Keluar</h2>
+          <p class="text-[11px] sm:text-xs text-white text-opacity-90 leading-tight">
             Dashboard Statistik Surat per Kepengurusan memberikan gambaran tentang pengelolaan surat.
           </p>
         </div>
       </div>
     </template>
-    
+
     <!-- Time Filter -->
-    <div class="px-4 pb-4 pt-2 bg-white flex flex-wrap items-center justify-between gap-4">
+    <div class="px-3 sm:px-4 pb-3 sm:pb-4 pt-2 bg-white flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
       <!-- Time Options -->
-      <div class="flex items-center gap-1 bg-white p-1 rounded-lg border border-gray-200">
+      <div class="flex items-center gap-1 bg-white p-1 rounded-lg border border-gray-200 w-full sm:w-auto">
         <button
           v-for="option in timeOptions"
           :key="option.value"
@@ -28,53 +28,57 @@
           {{ option.label }}
         </button>
       </div>
-      
+
       <!-- Date Range -->
-      <div class="flex items-center gap-3">
-        <span class="text-sm text-gray-700">Dari</span>
-        <input
-          v-model="dateFrom"
-          type="date"
-          class="px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary-green)] focus:border-[var(--primary-green)]"
-          @change="updateChart"
-        >
-        <span class="text-sm text-gray-700">Sampai</span>
-        <input
-          v-model="dateTo"
-          type="date"
-          class="px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary-green)] focus:border-[var(--primary-green)]"
-          @change="updateChart"
-        >
+      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3 w-full sm:w-auto">
+        <div class="flex items-center gap-2 w-full sm:w-auto">
+          <span class="text-xs sm:text-sm text-gray-700 whitespace-nowrap">Dari</span>
+          <input
+            v-model="dateFrom"
+            type="date"
+            class="flex-1 sm:flex-initial px-2 sm:px-3 py-1.5 sm:py-2 border border-gray-300 rounded-md text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary-green)] focus:border-[var(--primary-green)]"
+            @change="updateChart"
+          >
+        </div>
+        <div class="flex items-center gap-2 w-full sm:w-auto">
+          <span class="text-xs sm:text-sm text-gray-700 whitespace-nowrap">Sampai</span>
+          <input
+            v-model="dateTo"
+            type="date"
+            class="flex-1 sm:flex-initial px-2 sm:px-3 py-1.5 sm:py-2 border border-gray-300 rounded-md text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary-green)] focus:border-[var(--primary-green)]"
+            @change="updateChart"
+          >
+        </div>
       </div>
     </div>
-    
+
     <!-- Chart Container -->
-    <div class="p-4 h-96">
-      <BaseEChart 
-        :option="chartOption" 
-        height="100%" 
+    <div class="p-3 sm:p-4 h-64 sm:h-80 md:h-96">
+      <BaseEChart
+        :option="chartOption"
+        height="100%"
         :loading="loading"
         @chart-ready="onChartReady"
       />
     </div>
-    
+
     <!-- Statistics Summary -->
-    <div class="px-4 py-3 bg-white grid grid-cols-4 gap-4">
-      <div class="text-center p-4 bg-gray-50 rounded-lg border border-gray-200">
-        <div class="text-xs text-gray-600 uppercase font-semibold tracking-wide mb-1">Total</div>
-        <div class="text-2xl font-bold text-gray-900">{{ chartStats.total }}</div>
+    <div class="px-3 sm:px-4 py-3 bg-white grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4">
+      <div class="text-center p-2 sm:p-4 bg-gray-50 rounded-lg border border-gray-200">
+        <div class="text-[10px] sm:text-xs text-gray-600 uppercase font-semibold tracking-wide mb-1">Total</div>
+        <div class="text-lg sm:text-2xl font-bold text-gray-900">{{ chartStats.total }}</div>
       </div>
-      <div class="text-center p-4 bg-gray-50 rounded-lg border border-gray-200">
-        <div class="text-xs text-gray-600 uppercase font-semibold tracking-wide mb-1">Rata Rata</div>
-        <div class="text-2xl font-bold text-gray-900">{{ chartStats.average }}</div>
+      <div class="text-center p-2 sm:p-4 bg-gray-50 rounded-lg border border-gray-200">
+        <div class="text-[10px] sm:text-xs text-gray-600 uppercase font-semibold tracking-wide mb-1">Rata Rata</div>
+        <div class="text-lg sm:text-2xl font-bold text-gray-900">{{ chartStats.average }}</div>
       </div>
-      <div class="text-center p-4 bg-gray-50 rounded-lg border border-gray-200">
-        <div class="text-xs text-gray-600 uppercase font-semibold tracking-wide mb-1">Tertinggi</div>
-        <div class="text-2xl font-bold text-gray-900">{{ chartStats.highest }}</div>
+      <div class="text-center p-2 sm:p-4 bg-gray-50 rounded-lg border border-gray-200">
+        <div class="text-[10px] sm:text-xs text-gray-600 uppercase font-semibold tracking-wide mb-1">Tertinggi</div>
+        <div class="text-lg sm:text-2xl font-bold text-gray-900">{{ chartStats.highest }}</div>
       </div>
-      <div class="text-center p-4 bg-gray-50 rounded-lg border border-gray-200">
-        <div class="text-xs text-gray-600 uppercase font-semibold tracking-wide mb-1">Terendah</div>
-        <div class="text-2xl font-bold text-gray-900">{{ chartStats.lowest }}</div>
+      <div class="text-center p-2 sm:p-4 bg-gray-50 rounded-lg border border-gray-200">
+        <div class="text-[10px] sm:text-xs text-gray-600 uppercase font-semibold tracking-wide mb-1">Terendah</div>
+        <div class="text-lg sm:text-2xl font-bold text-gray-900">{{ chartStats.lowest }}</div>
       </div>
     </div>
   </BaseCard>
@@ -215,10 +219,10 @@ const chartOption = computed((): EChartsOption => ({
 }))
 
 const getTimeButtonClass = (value: string) => {
-  const baseClasses = 'px-4 py-2 text-sm font-medium rounded-md transition-all duration-200'
+  const baseClasses = 'px-2 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium rounded-md transition-all duration-200 flex-1 sm:flex-initial'
   const activeClasses = 'bg-[var(--primary-green)] text-white'
   const inactiveClasses = 'text-gray-700 hover:bg-gray-100'
-  
+
   return [
     baseClasses,
     selectedTimeRange.value === value ? activeClasses : inactiveClasses

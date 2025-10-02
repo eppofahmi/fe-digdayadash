@@ -4,38 +4,48 @@
     <template #header>
       <div class="section-header">
         <div class="section-header-logo">
-          <ChartColumnBig class="w-6 h-6" />
+          <ChartColumnBig class="w-5 h-5 sm:w-6 sm:h-6" />
         </div>
         <div class="flex-1">
-          <h2 class="text-base font-semibold mb-1 text-white">Dashboard Statistik Surat per Kepengurusan</h2>
-          <p class="text-xs text-white text-opacity-90 leading-tight">
+          <h2 class="text-sm sm:text-base font-semibold mb-1 text-white">Dashboard Statistik Surat per Kepengurusan</h2>
+          <p class="text-[11px] sm:text-xs text-white text-opacity-90 leading-tight">
             Dashboard Statistik Surat per Kepengurusan memberikan gambaran tentang pengelolaan surat.
           </p>
         </div>
       </div>
     </template>
-    
+
     <!-- Filters -->
-    <DashboardFilters 
+    <DashboardFilters
       @filter-change="handleFilterChange"
       @filter-reset="handleFilterReset"
     />
-    
+
     <!-- Table -->
-    <div class="mx-3 mb-3 bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+    <div class="mx-2 sm:mx-3 mb-3 bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+      <!-- Mobile: Scroll hint -->
+      <div class="sm:hidden px-3 py-2 bg-blue-50 border-b border-blue-100">
+        <p class="text-xs text-blue-700 flex items-center gap-1">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+          </svg>
+          Geser ke kiri/kanan untuk melihat semua kolom
+        </p>
+      </div>
+
       <div class="overflow-x-auto">
-        <table class="w-full">
+        <table class="w-full min-w-[800px]">
           <thead>
             <tr class="bg-gray-50">
-              <th class="px-4 py-4 text-left text-sm font-semibold text-gray-700 border-b border-gray-200">No</th>
-              <th class="px-4 py-4 text-left text-sm font-semibold text-gray-700 border-b border-gray-200">Nama</th>
-              <th class="px-4 py-4 text-left text-sm font-semibold text-gray-700 border-b border-gray-200">Tingkat</th>
-              <th class="px-4 py-4 text-left text-sm font-semibold text-gray-700 border-b border-gray-200">Kepengurusan</th>
-              <th class="px-4 py-4 text-left text-sm font-semibold text-gray-700 border-b border-gray-200">Tanggal Mulai</th>
-              <th class="px-4 py-4 text-left text-sm font-semibold text-gray-700 border-b border-gray-200">Surat Keluar</th>
-              <th class="px-4 py-4 text-left text-sm font-semibold text-gray-700 border-b border-gray-200">Surat Masuk</th>
-              <th class="px-4 py-4 text-left text-sm font-semibold text-gray-700 border-b border-gray-200">Log Disposisi</th>
-              <th class="px-4 py-4 text-left text-sm font-semibold text-gray-700 border-b border-gray-200">Memo</th>
+              <th class="px-2 sm:px-4 py-2 sm:py-4 text-left text-xs sm:text-sm font-semibold text-gray-700 border-b border-gray-200">No</th>
+              <th class="px-2 sm:px-4 py-2 sm:py-4 text-left text-xs sm:text-sm font-semibold text-gray-700 border-b border-gray-200">Nama</th>
+              <th class="px-2 sm:px-4 py-2 sm:py-4 text-left text-xs sm:text-sm font-semibold text-gray-700 border-b border-gray-200">Tingkat</th>
+              <th class="px-2 sm:px-4 py-2 sm:py-4 text-left text-xs sm:text-sm font-semibold text-gray-700 border-b border-gray-200">Kepengurusan</th>
+              <th class="px-2 sm:px-4 py-2 sm:py-4 text-left text-xs sm:text-sm font-semibold text-gray-700 border-b border-gray-200 whitespace-nowrap">Tanggal Mulai</th>
+              <th class="px-2 sm:px-4 py-2 sm:py-4 text-left text-xs sm:text-sm font-semibold text-gray-700 border-b border-gray-200 whitespace-nowrap">Surat Keluar</th>
+              <th class="px-2 sm:px-4 py-2 sm:py-4 text-left text-xs sm:text-sm font-semibold text-gray-700 border-b border-gray-200 whitespace-nowrap">Surat Masuk</th>
+              <th class="px-2 sm:px-4 py-2 sm:py-4 text-left text-xs sm:text-sm font-semibold text-gray-700 border-b border-gray-200 whitespace-nowrap">Log Disposisi</th>
+              <th class="px-2 sm:px-4 py-2 sm:py-4 text-left text-xs sm:text-sm font-semibold text-gray-700 border-b border-gray-200">Memo</th>
             </tr>
           </thead>
           <tbody>
@@ -44,22 +54,22 @@
               :key="item.no"
               class="hover:bg-gray-50 transition-colors duration-200"
             >
-              <td class="px-4 py-4 text-sm border-b border-gray-200">{{ item.no }}</td>
-              <td class="px-4 py-4 text-sm border-b border-gray-200">{{ item.nama }}</td>
-              <td class="px-4 py-4 text-sm border-b border-gray-200">
-                <span 
+              <td class="px-2 sm:px-4 py-2 sm:py-4 text-xs sm:text-sm border-b border-gray-200">{{ item.no }}</td>
+              <td class="px-2 sm:px-4 py-2 sm:py-4 text-xs sm:text-sm border-b border-gray-200 whitespace-nowrap">{{ item.nama }}</td>
+              <td class="px-2 sm:px-4 py-2 sm:py-4 text-xs sm:text-sm border-b border-gray-200">
+                <span
                   :class="getTingkatBadgeClass(item.tingkat)"
-                  class="inline-block px-3 py-1 rounded-full text-xs font-medium"
+                  class="inline-block px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-medium whitespace-nowrap"
                 >
                   {{ item.tingkat }}
                 </span>
               </td>
-              <td class="px-4 py-4 text-sm border-b border-gray-200">{{ item.kepengurusan }}</td>
-              <td class="px-4 py-4 text-sm border-b border-gray-200">{{ item.tanggalMulai }}</td>
-              <td class="px-4 py-4 text-sm border-b border-gray-200">{{ formatNumber(item.suratKeluar) }}</td>
-              <td class="px-4 py-4 text-sm border-b border-gray-200">{{ formatNumber(item.suratMasuk) }}</td>
-              <td class="px-4 py-4 text-sm border-b border-gray-200">{{ formatNumber(item.logDisposisi) }}</td>
-              <td class="px-4 py-4 text-sm border-b border-gray-200">{{ formatNumber(item.memo) }}</td>
+              <td class="px-2 sm:px-4 py-2 sm:py-4 text-xs sm:text-sm border-b border-gray-200 whitespace-nowrap">{{ item.kepengurusan }}</td>
+              <td class="px-2 sm:px-4 py-2 sm:py-4 text-xs sm:text-sm border-b border-gray-200 whitespace-nowrap">{{ item.tanggalMulai }}</td>
+              <td class="px-2 sm:px-4 py-2 sm:py-4 text-xs sm:text-sm border-b border-gray-200">{{ formatNumber(item.suratKeluar) }}</td>
+              <td class="px-2 sm:px-4 py-2 sm:py-4 text-xs sm:text-sm border-b border-gray-200">{{ formatNumber(item.suratMasuk) }}</td>
+              <td class="px-2 sm:px-4 py-2 sm:py-4 text-xs sm:text-sm border-b border-gray-200">{{ formatNumber(item.logDisposisi) }}</td>
+              <td class="px-2 sm:px-4 py-2 sm:py-4 text-xs sm:text-sm border-b border-gray-200">{{ formatNumber(item.memo) }}</td>
             </tr>
           </tbody>
         </table>

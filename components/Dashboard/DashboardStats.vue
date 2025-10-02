@@ -1,39 +1,39 @@
 <template>
-  <div class="mb-8">
+  <div class="mb-6 sm:mb-8">
     <!-- Action Buttons - Left: Back, Right: Share & Link -->
-    <div class="flex justify-between items-center mb-4">
+    <div class="flex justify-between items-center mb-3 sm:mb-4">
       <!-- Back Button - Left -->
       <button
-        class="flex items-center gap-2 text-gray-600 hover:text-[var(--primary-green)] transition-colors duration-200"
+        class="flex items-center gap-1 sm:gap-2 text-gray-600 hover:text-[var(--primary-green)] transition-colors duration-200"
         @click="$router.push('/')"
       >
         <ArrowLeft class="w-4 h-4" />
-        <span class="text-sm font-medium">Kembali</span>
+        <span class="text-xs sm:text-sm font-medium">Kembali</span>
       </button>
 
       <!-- Share & Link Buttons - Right -->
-      <div class="flex gap-3">
+      <div class="flex gap-2 sm:gap-3">
         <button
-          class="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 hover:text-[var(--primary-green)] transition-colors duration-200 border border-gray-300 rounded-md"
+          class="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-medium text-gray-700 hover:text-[var(--primary-green)] transition-colors duration-200 border border-gray-300 rounded-md"
           style="background: rgba(255, 255, 255, 1);"
           @click="showShareModal = true"
         >
-          <Share2 class="w-4 h-4" />
-          Share
+          <Share2 class="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+          <span class="hidden sm:inline">Share</span>
         </button>
         <button
-          class="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 hover:text-[var(--primary-green)] transition-colors duration-200 border border-gray-300 rounded-md"
+          class="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-medium text-gray-700 hover:text-[var(--primary-green)] transition-colors duration-200 border border-gray-300 rounded-md"
           style="background: rgba(255, 255, 255, 1);"
           @click="handleCopyLink"
         >
-          <Link class="w-4 h-4" />
-          Link
+          <Link class="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+          <span class="hidden sm:inline">Link</span>
         </button>
       </div>
     </div>
-    
+
     <!-- Statistics Grid -->
-    <div class="grid grid-cols-3 gap-3">
+    <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
       <BaseCard
         v-for="stat in statistics"
         :key="stat.label"
@@ -41,17 +41,17 @@
         :padding="false"
         class="text-center"
       >
-        <div class="p-3">
-          <div class="w-8 h-8 bg-[#daf8e3] rounded-lg flex items-center justify-center mx-auto mb-1">
-            <component :is="stat.icon" class="w-4 h-4 text-[var(--secondary-teal)]" />
+        <div class="p-2 sm:p-3">
+          <div class="w-6 h-6 sm:w-8 sm:h-8 bg-[#daf8e3] rounded-lg flex items-center justify-center mx-auto mb-1">
+            <component :is="stat.icon" class="w-3 h-3 sm:w-4 sm:h-4 text-[var(--secondary-teal)]" />
           </div>
-          <div class="text-xs text-gray-600 mb-1 font-bold leading-tight uppercase text-center">
+          <div class="text-[10px] sm:text-xs text-gray-600 mb-1 font-bold leading-tight uppercase text-center">
             <div v-for="line in stat.label.split(' ')" :key="line">{{ line }}</div>
           </div>
-          <div class="w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mb-2" />
-          <div>
-            <span class="text-2xl font-bold text-gray-900">{{ stat.value }}</span>
-            <span v-if="stat.percentage" class="text-base font-medium text-[#017534] ml-2">{{ stat.percentage }}</span>
+          <div class="w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mb-1 sm:mb-2" />
+          <div class="flex flex-row items-center justify-center gap-1 sm:gap-2">
+            <span class="text-lg sm:text-2xl font-bold text-gray-900">{{ stat.value }}</span>
+            <span v-if="stat.percentage" class="text-sm sm:text-base font-medium text-[#017534]">{{ stat.percentage }}</span>
           </div>
         </div>
       </BaseCard>
