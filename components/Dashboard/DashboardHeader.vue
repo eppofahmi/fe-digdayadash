@@ -9,6 +9,9 @@
       >
     </div>
 
+    <!-- Dark Overlay for better text readability on mobile -->
+    <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/40 sm:from-black/20 sm:via-black/10 sm:to-black/20" />
+
     <!-- Content (positioned above background graphics) -->
     <div class="relative z-10">
       <div class="mb-3 sm:mb-4">
