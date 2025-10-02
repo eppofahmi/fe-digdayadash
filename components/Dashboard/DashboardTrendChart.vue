@@ -42,8 +42,17 @@
       </div>
     </template>
 
-    <!-- Time Filter -->
-    <div class="px-3 sm:px-4 pb-3 sm:pb-4 pt-2 bg-white flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
+    <!-- Loading State -->
+    <template v-if="loading">
+      <div class="p-3 sm:p-4">
+        <SkeletonChart />
+      </div>
+    </template>
+
+    <!-- Actual Content -->
+    <template v-else>
+      <!-- Time Filter -->
+      <div class="px-3 sm:px-4 pb-3 sm:pb-4 pt-2 bg-white flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
       <!-- Time Options -->
       <div class="flex items-center gap-1 bg-white p-1 rounded-lg border border-gray-200 w-full sm:w-auto">
         <button
@@ -79,35 +88,35 @@
       </div>
     </div>
 
-    <!-- Chart Container -->
-    <div class="p-3 sm:p-4 h-64 sm:h-80 md:h-96">
-      <BaseEChart
-        :option="chartOption"
-        height="100%"
-        :loading="loading"
-        @chart-ready="onChartReady"
-      />
-    </div>
+      <!-- Chart Container -->
+      <div class="p-3 sm:p-4 h-64 sm:h-80 md:h-96">
+        <BaseEChart
+          :option="chartOption"
+          height="100%"
+          @chart-ready="onChartReady"
+        />
+      </div>
 
-    <!-- Statistics Summary -->
-    <div class="px-3 sm:px-4 py-3 bg-white grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4">
-      <div class="text-center p-2 sm:p-4 bg-gray-50 rounded-lg border border-gray-200">
-        <div class="text-[10px] sm:text-xs text-gray-600 uppercase font-semibold tracking-wide mb-1">Total</div>
-        <div class="text-lg sm:text-2xl font-bold text-gray-900">{{ chartStats.total }}</div>
+      <!-- Statistics Summary -->
+      <div class="px-3 sm:px-4 py-3 bg-white grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4">
+        <div class="text-center p-2 sm:p-4 bg-gray-50 rounded-lg border border-gray-200">
+          <div class="text-[10px] sm:text-xs text-gray-600 uppercase font-semibold tracking-wide mb-1">Total</div>
+          <div class="text-lg sm:text-2xl font-bold text-gray-900">{{ chartStats.total }}</div>
+        </div>
+        <div class="text-center p-2 sm:p-4 bg-gray-50 rounded-lg border border-gray-200">
+          <div class="text-[10px] sm:text-xs text-gray-600 uppercase font-semibold tracking-wide mb-1">Rata Rata</div>
+          <div class="text-lg sm:text-2xl font-bold text-gray-900">{{ chartStats.average }}</div>
+        </div>
+        <div class="text-center p-2 sm:p-4 bg-gray-50 rounded-lg border border-gray-200">
+          <div class="text-[10px] sm:text-xs text-gray-600 uppercase font-semibold tracking-wide mb-1">Tertinggi</div>
+          <div class="text-lg sm:text-2xl font-bold text-gray-900">{{ chartStats.highest }}</div>
+        </div>
+        <div class="text-center p-2 sm:p-4 bg-gray-50 rounded-lg border border-gray-200">
+          <div class="text-[10px] sm:text-xs text-gray-600 uppercase font-semibold tracking-wide mb-1">Terendah</div>
+          <div class="text-lg sm:text-2xl font-bold text-gray-900">{{ chartStats.lowest }}</div>
+        </div>
       </div>
-      <div class="text-center p-2 sm:p-4 bg-gray-50 rounded-lg border border-gray-200">
-        <div class="text-[10px] sm:text-xs text-gray-600 uppercase font-semibold tracking-wide mb-1">Rata Rata</div>
-        <div class="text-lg sm:text-2xl font-bold text-gray-900">{{ chartStats.average }}</div>
-      </div>
-      <div class="text-center p-2 sm:p-4 bg-gray-50 rounded-lg border border-gray-200">
-        <div class="text-[10px] sm:text-xs text-gray-600 uppercase font-semibold tracking-wide mb-1">Tertinggi</div>
-        <div class="text-lg sm:text-2xl font-bold text-gray-900">{{ chartStats.highest }}</div>
-      </div>
-      <div class="text-center p-2 sm:p-4 bg-gray-50 rounded-lg border border-gray-200">
-        <div class="text-[10px] sm:text-xs text-gray-600 uppercase font-semibold tracking-wide mb-1">Terendah</div>
-        <div class="text-lg sm:text-2xl font-bold text-gray-900">{{ chartStats.lowest }}</div>
-      </div>
-    </div>
+    </template>
   </BaseCard>
 </template>
 
@@ -120,10 +129,17 @@ interface TimeOption {
   value: 'daily' | 'weekly' | 'monthly'
 }
 
+interface Props {
+  loading?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  loading: false
+})
+
 const selectedTimeRange = ref<'daily' | 'weekly' | 'monthly'>('daily')
 const dateFrom = ref('')
 const dateTo = ref('')
-const loading = ref(false)
 const showDescription = ref(false)
 
 const timeOptions: TimeOption[] = [

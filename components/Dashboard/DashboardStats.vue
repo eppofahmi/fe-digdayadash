@@ -34,27 +34,35 @@
 
     <!-- Statistics Grid -->
     <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
-      <BaseCard
-        v-for="stat in statistics"
-        :key="stat.label"
-        :hoverable="true"
-        :padding="false"
-        class="text-center"
-      >
-        <div class="p-2 sm:p-3">
-          <div class="w-6 h-6 sm:w-8 sm:h-8 bg-[#daf8e3] rounded-lg flex items-center justify-center mx-auto mb-1">
-            <component :is="stat.icon" class="w-3 h-3 sm:w-4 sm:h-4 text-[var(--secondary-teal)]" />
+      <!-- Loading State -->
+      <template v-if="loading">
+        <SkeletonCard v-for="i in 6" :key="i" />
+      </template>
+
+      <!-- Actual Data -->
+      <template v-else>
+        <BaseCard
+          v-for="stat in statistics"
+          :key="stat.label"
+          :hoverable="true"
+          :padding="false"
+          class="text-center"
+        >
+          <div class="p-2 sm:p-3">
+            <div class="w-6 h-6 sm:w-8 sm:h-8 bg-[#daf8e3] rounded-lg flex items-center justify-center mx-auto mb-1">
+              <component :is="stat.icon" class="w-3 h-3 sm:w-4 sm:h-4 text-[var(--secondary-teal)]" />
+            </div>
+            <div class="text-[10px] sm:text-xs text-gray-600 mb-1 font-bold leading-tight uppercase text-center">
+              <div v-for="line in stat.label.split(' ')" :key="line">{{ line }}</div>
+            </div>
+            <div class="w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mb-1 sm:mb-2" />
+            <div class="flex flex-row items-center justify-center gap-1 sm:gap-2">
+              <span class="text-lg sm:text-2xl font-bold text-gray-900">{{ stat.value }}</span>
+              <span v-if="stat.percentage" class="text-sm sm:text-base font-medium text-[#017534]">{{ stat.percentage }}</span>
+            </div>
           </div>
-          <div class="text-[10px] sm:text-xs text-gray-600 mb-1 font-bold leading-tight uppercase text-center">
-            <div v-for="line in stat.label.split(' ')" :key="line">{{ line }}</div>
-          </div>
-          <div class="w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mb-1 sm:mb-2" />
-          <div class="flex flex-row items-center justify-center gap-1 sm:gap-2">
-            <span class="text-lg sm:text-2xl font-bold text-gray-900">{{ stat.value }}</span>
-            <span v-if="stat.percentage" class="text-sm sm:text-base font-medium text-[#017534]">{{ stat.percentage }}</span>
-          </div>
-        </div>
-      </BaseCard>
+        </BaseCard>
+      </template>
     </div>
 
     <!-- Share Modal -->
@@ -82,10 +90,12 @@ import type { Component } from 'vue'
 
 interface Props {
   currentFilters?: Record<string, unknown>
+  loading?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  currentFilters: () => ({})
+  currentFilters: () => ({}),
+  loading: false
 })
 
 interface StatisticCard {

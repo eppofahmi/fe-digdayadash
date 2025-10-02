@@ -5,21 +5,21 @@
       <DashboardHeader />
 
       <!-- Statistics Cards -->
-      <DashboardStats />
+      <DashboardStats :loading="loading" />
 
       <!-- Activation Table -->
       <div class="mb-6 sm:mb-8">
-        <DashboardActivationTable />
+        <DashboardActivationTable :loading="loading" />
       </div>
 
       <!-- Statistics Table -->
       <div class="mb-6 sm:mb-8">
-        <DashboardStatisticsTable />
+        <DashboardStatisticsTable :loading="loading" />
       </div>
 
       <!-- Trend Chart -->
       <div class="mb-6 sm:mb-8">
-        <DashboardTrendChart />
+        <DashboardTrendChart :loading="loading" />
       </div>
     </div>
 
@@ -76,6 +76,17 @@ useHead({
       content: 'Monitoring dan evaluasi implementasi sistem persuratan digital di seluruh kepengurusan NU'
     }
   ]
+})
+
+// Loading state - simulated for demonstration
+const loading = ref(true)
+
+// Simulate data loading
+onMounted(() => {
+  // Simulate API call delay
+  setTimeout(() => {
+    loading.value = false
+  }, 1500)
 })
 
 // Dashboard data for Katalog Dasbor

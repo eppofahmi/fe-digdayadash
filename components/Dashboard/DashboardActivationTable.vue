@@ -50,19 +50,24 @@
     />
 
     <!-- Table -->
-    <div class="mx-2 sm:mx-3 mb-3 bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-      <!-- Mobile: Scroll hint -->
-      <div class="sm:hidden px-3 py-2 bg-blue-50 border-b border-blue-100">
-        <p class="text-xs text-blue-700 flex items-center gap-1">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
-          </svg>
-          Geser ke kiri/kanan untuk melihat semua kolom
-        </p>
-      </div>
+    <div class="mx-2 sm:mx-3 mb-3">
+      <!-- Loading State -->
+      <SkeletonTable v-if="loading" :rows="perPage" />
 
-      <div class="overflow-x-auto">
-        <table class="w-full min-w-[640px]">
+      <!-- Actual Table -->
+      <div v-else class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+        <!-- Mobile: Scroll hint -->
+        <div class="sm:hidden px-3 py-2 bg-blue-50 border-b border-blue-100">
+          <p class="text-xs text-blue-700 flex items-center gap-1">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+            </svg>
+            Geser ke kiri/kanan untuk melihat semua kolom
+          </p>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full min-w-[640px]">
           <thead>
             <tr class="bg-gray-50">
               <th class="px-2 sm:px-4 py-2 sm:py-4 text-left text-xs sm:text-sm font-semibold text-gray-700 border-b border-gray-200">Ranking</th>
@@ -113,16 +118,17 @@
           </tbody>
         </table>
       </div>
-      
-      <!-- Pagination -->
-      <BasePagination
-        :current-page="currentPage"
-        :total-pages="totalPages"
-        :total="filteredData.length"
-        :per-page="perPage"
-        @page-change="handlePageChange"
-        @per-page-change="handlePerPageChange"
-      />
+
+        <!-- Pagination -->
+        <BasePagination
+          :current-page="currentPage"
+          :total-pages="totalPages"
+          :total="filteredData.length"
+          :per-page="perPage"
+          @page-change="handlePageChange"
+          @per-page-change="handlePerPageChange"
+        />
+      </div>
     </div>
   </BaseCard>
 </template>
@@ -130,6 +136,14 @@
 <script setup lang="ts">
 import { UserCheck, Info } from 'lucide-vue-next'
 import type { OrganizationActivation, FilterOptions } from '~/types'
+
+interface Props {
+  loading?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  loading: false
+})
 
 const currentPage = ref(1)
 const perPage = ref(10)
