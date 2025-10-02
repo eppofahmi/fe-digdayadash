@@ -4,7 +4,7 @@
  */
 
 export const useErrorHandler = () => {
-  const { show: showToast } = useToast()
+  const { error: showToast } = useToast()
 
   /**
    * Handle async errors gracefully
@@ -19,7 +19,7 @@ export const useErrorHandler = () => {
       console.error('Async error:', error)
 
       const message = errorMessage || 'Terjadi kesalahan. Silakan coba lagi.'
-      showToast(message, 'error')
+      showToast(message)
 
       return null
     }
@@ -44,7 +44,7 @@ export const useErrorHandler = () => {
       }
     }
 
-    showToast(message, 'error')
+    showToast(message)
   }
 
   /**
@@ -65,7 +65,7 @@ export const useErrorHandler = () => {
     }
 
     const message = customMessage || messages[statusCode] || 'Terjadi kesalahan.'
-    showToast(message, 'error')
+    showToast(message)
   }
 
   /**
@@ -91,7 +91,7 @@ export const useErrorHandler = () => {
       onErrorCaptured: (error: Error) => {
         console.error(`Error in ${componentName}:`, error)
         logError(error, { component: componentName })
-        showToast(`Error di ${componentName}. Silakan refresh halaman.`, 'error')
+        showToast(`Error di ${componentName}. Silakan refresh halaman.`)
         return false // Prevent error propagation
       }
     }

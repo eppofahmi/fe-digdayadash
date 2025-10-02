@@ -67,7 +67,7 @@ interface Props {
 
 const props = defineProps<Props>()
 
-const isDevelopment = process.dev
+const isDevelopment = import.meta.dev
 
 const is404 = computed(() => props.error.statusCode === 404)
 

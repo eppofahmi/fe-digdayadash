@@ -57,7 +57,7 @@ interface Props {
   columns?: string[]
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   rows: 5,
   columns: () => ['80px', '150px', '100px', '120px', '100px', '80px']
 })
